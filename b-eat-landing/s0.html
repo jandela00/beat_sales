@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S0 Hero Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #e5e5e5;
+    display: flex;
+    justify-content: center;
+  }
+
+  .s0 {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background: #0d0d1f;
+    overflow: hidden;
+    font-family: 'Pretendard', sans-serif;
+  }
+
+  .s0 .hri-bg {
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 1919px;
+    height: 1357px;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  /* Nav */
+  .s0 .nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 90px;
+  }
+
+  .s0 .nav .logo {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 654.5px);
+    transform: translate(-50%, -50%);
+    width: 91px;
+    height: 28px;
+    object-fit: cover;
+  }
+
+  .s0 .nav .nav-links {
+    position: absolute;
+    top: 50%;
+    left: 887px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .s0 .nav .nav-links a {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .s0 .nav .nav-cta {
+    background: #5298dd;
+    border-radius: 24px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .s0 .nav .nav-cta span {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+  /* Title block */
+  .s0 .title-block {
+    position: absolute;
+    left: 259px;
+    top: 344px;
+    width: 784px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .s0 .title-block .eyebrow {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 32px;
+    color: #5298dd;
+    white-space: nowrap;
+  }
+
+  .s0 .title-block .main-title {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .s0 .title-block .main-title h1 {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 72px;
+    color: #ffffff;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  .s0 .title-block .main-title .line2 {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .s0 .title-block .main-title .line2 span {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 72px;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+  .s0 .title-block .main-title .line2 img {
+    width: 201px;
+    height: 62px;
+    object-fit: cover;
+  }
+
+  /* CTA buttons */
+  .s0 .cta-primary,
+  .s0 .cta-secondary {
+    position: absolute;
+    top: 730px;
+    width: 240px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+    overflow: hidden;
+  }
+
+  .s0 .cta-primary {
+    left: 259px;
+    background: #5298dd;
+    color: #ffffff;
+  }
+
+  .s0 .cta-secondary {
+    left: 516px;
+    border: 1px solid #d1d1d1;
+    color: #d1d1d1;
+    background: transparent;
+  }
+</style>
+</head>
+<body>
+
+<section class="s0">
+  <img class="hri-bg" src="assets/hri-2-photo.png" alt="" />
+
+  <nav class="nav">
+    <img class="logo" src="assets/logo.png" alt="b:eat logo" />
+    <div class="nav-links">
+      <a href="#">b;eat 소개</a>
+      <a href="#">AI 매장 운영</a>
+      <a href="#">3 Track Client</a>
+      <a href="#">도입조건</a>
+      <a href="#">비트코퍼레이션</a>
+      <a href="#" class="nav-cta"><span>상담 신청 → </span></a>
+    </div>
+  </nav>
+
+  <div class="title-block">
+    <p class="eyebrow">무인 로봇 카페 최초 시작, 최다 설치</p>
+    <div class="main-title">
+      <h1>수익은 UP, 시간은 FREE</h1>
+      <div class="line2">
+        <span>AI 로봇커피</span>
+        <img src="assets/logo.png" alt="b:eat" />
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="cta-primary">지금 창업 문의하기 →</a>
+  <a href="#" class="cta-secondary">브랜드 소개 보기 ↓</a>
+</section>
+
+</body>
+</html>
