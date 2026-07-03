@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S5 AI Solution Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body { font-family: 'Pretendard', sans-serif; }
+
+  .s5 {
+    width: 100%;
+    background: #edf5ff;
+  }
+
+  .s5 .inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(40px, 5.7vw, 80px) clamp(20px, 4vw, 60px) clamp(55px, 7.9vw, 110px);
+  }
+
+  /* Title */
+  .s5 .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 1.6vw, 20px);
+    text-align: center;
+  }
+
+  .s5 .title .label {
+    border: 1px solid #5298dd;
+    border-radius: 32px;
+    padding: 10px 20px;
+    color: #5298dd;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 14px);
+    text-transform: uppercase;
+  }
+
+  .s5 .title h2 {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(22px, 3.2vw, 48px);
+    line-height: 1.25;
+  }
+
+  .s5 .title h2 .accent {
+    color: #5298dd;
+  }
+
+  /* Tab + panel layout */
+  .s5 .solution {
+    margin-top: clamp(30px, 4.3vw, 60px);
+    display: flex;
+    gap: clamp(12px, 1.1vw, 16px);
+    align-items: stretch;
+  }
+
+  .s5 .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 0 0 260px;
+    max-width: 260px;
+  }
+
+  .s5 .tab {
+    width: 100%;
+    height: 60px;
+    background: #ffffff;
+    border: 1px solid #d5eaff;
+    color: #4a4a6a;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: clamp(13px, 1vw, 16px);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .s5 .tab.active {
+    background: #5298dd;
+    border-color: #5298dd;
+    color: #ffffff;
+    font-weight: 800;
+    box-shadow: 2px 4px 6px rgba(82, 152, 221, 0.12);
+  }
+
+  .s5 .panels {
+    flex: 1 1 auto;
+    min-width: 0;
+    background: #ffffff;
+    position: relative;
+  }
+
+  .s5 .panel {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(24px, 3vw, 60px);
+    flex-wrap: wrap;
+    padding: clamp(24px, 3vw, 48px);
+    min-height: 498px;
+  }
+
+  .s5 .panel.active {
+    display: flex;
+  }
+
+  .s5 .panel .text {
+    flex: 1 1 260px;
+    max-width: 340px;
+  }
+
+  .s5 .panel .text h3 {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(20px, 2.2vw, 32px);
+    line-height: 1.25;
+  }
+
+  .s5 .panel .text .sub {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .s5 .panel .text .sub p {
+    color: #4a4a6a;
+    font-weight: 500;
+    font-size: clamp(12px, 1vw, 16px);
+    line-height: 1.4;
+  }
+
+  .s5 .panel .text .sub + .sub {
+    margin-top: 8px;
+  }
+
+  .s5 .panel .visual {
+    flex: 1 1 320px;
+    max-width: 560px;
+  }
+
+  .s5 .panel .visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 860px) {
+    .s5 .solution { flex-direction: column; }
+    .s5 .tabs { flex-direction: row; max-width: none; }
+    .s5 .tab { height: 48px; }
+    .s5 .panel { flex-direction: column; text-align: center; }
+    .s5 .panel .text .sub { align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<section class="s5">
+  <div class="inner">
+    <div class="title">
+      <span class="label">ai solution</span>
+      <h2>
+        세계 최초 AI 매장 운영 솔루션<br />
+        비트 자체 개발 <span class="accent">i-MAD</span>
+      </h2>
+    </div>
+
+    <div class="solution">
+      <div class="tabs">
+        <button type="button" class="tab active" data-panel="panel-1">AI 대시보드</button>
+        <button type="button" class="tab" data-panel="panel-2">AI 자동 발주</button>
+        <button type="button" class="tab" data-panel="panel-3">AI 마케팅 기능</button>
+      </div>
+
+      <div class="panels">
+        <div class="panel active" id="panel-1">
+          <div class="text">
+            <h3>실시간 지표 및<br />실적 분석 보고서</h3>
+            <div class="sub">
+              <p>매장 운영에 관한 전반적인 현황을 포함하여</p>
+              <p>매출, 판매 잔 수, 마케팅 효과 등</p>
+              <p>주요 실적 분석 보고서를 시각화 하여 제공</p>
+            </div>
+          </div>
+          <div class="visual">
+            <img src="assets/s5-tab1.png" alt="AI 대시보드 실적 분석 화면" />
+          </div>
+        </div>
+
+        <div class="panel" id="panel-2">
+          <div class="text">
+            <h3>원자재 수요 예측<br />→ 자동 발주</h3>
+            <div class="sub">
+              <p>매장의 원자재 보관함의 로드셀 무게를 기준으로</p>
+              <p>운영 가능시간, 제조 가능잔수, 사전 결품 판단</p>
+            </div>
+            <div class="sub">
+              <p>과거 판매 잔수와 날씨, 요일, 위치 정보를 바탕으로</p>
+              <p>수요 예측 및 물류 자동 발주 지원</p>
+            </div>
+          </div>
+          <div class="visual">
+            <img src="assets/s5-tab2.png" alt="AI 자동 발주 화면" />
+          </div>
+        </div>
+
+        <div class="panel" id="panel-3">
+          <div class="text">
+            <h3>마케팅 자동화 지원</h3>
+            <div class="sub">
+              <p>매장과 고객의 성향을 분석하여 재방문 활성, 매출 활성,</p>
+              <p>특정 메뉴의 판매 활성 등의 쿠폰 성향에 따라 정밀 대상</p>
+              <p>마케팅 자동화 기능 제공</p>
+            </div>
+          </div>
+          <div class="visual">
+            <img src="assets/s5-tab3.png" alt="AI 마케팅 자동화 화면" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.s5 .tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.s5 .tab').forEach(function (t) { t.classList.remove('active'); });
+      document.querySelectorAll('.s5 .panel').forEach(function (p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.panel).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
