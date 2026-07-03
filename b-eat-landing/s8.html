@@ -60,6 +60,7 @@
 
   .s8 .photo {
     position: absolute;
+    z-index: 2;
     left: 0;
     top: 0;
     width: 64.29%;
@@ -77,6 +78,7 @@
 
   .s8 .panel {
     position: absolute;
+    z-index: 1;
     right: 0;
     top: 37.23%;
     width: 41.71%;
@@ -86,7 +88,7 @@
     flex-direction: column;
     justify-content: center;
     gap: clamp(16px, 2vw, 32px);
-    padding: clamp(20px, 4vw, 56px) clamp(24px, 5vw, 64px);
+    padding: clamp(20px, 6.3%, 88px) clamp(20px, 8.4%, 117px) clamp(20px, 6.3%, 88px) clamp(24px, 10.3%, 144px);
     color: #ffffff;
   }
 
@@ -110,6 +112,7 @@
 
   .s8 .controls {
     position: absolute;
+    z-index: 3;
     left: 68.57%;
     top: 26.15%;
     display: flex;
@@ -150,6 +153,10 @@
     font-size: clamp(14px, 1.4vw, 24px);
     color: #d1d1d1;
     white-space: nowrap;
+    display: inline-block;
+    width: 2.6em;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
   }
 
   .s8 .controls .count .current {
