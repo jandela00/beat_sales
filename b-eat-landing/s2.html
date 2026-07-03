@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S2 Expected Return Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body { font-family: 'Pretendard', sans-serif; background: #ffffff; }
+
+  .s2 { width: 100%; background: #ffffff; }
+
+  .s2 .inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(48px, 7vw, 100px) clamp(20px, 4vw, 60px);
+  }
+
+  /* Title */
+  .s2 .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 1.6vw, 20px);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto clamp(40px, 6vw, 72px);
+  }
+
+  .s2 .title .label {
+    border: 1px solid #5298dd;
+    border-radius: 32px;
+    padding: 8px 18px;
+    color: #5298dd;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 14px);
+    text-transform: uppercase;
+  }
+
+  .s2 .title h2 {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(24px, 3.2vw, 48px);
+    line-height: 1.25;
+    margin-top: 4px;
+  }
+
+  .s2 .title .sub {
+    color: #4a4a6a;
+    font-weight: 400;
+    font-size: clamp(13px, 1.1vw, 20px);
+  }
+
+  /* Chart + table row */
+  .s2 .content-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(32px, 5vw, 80px);
+    flex-wrap: wrap;
+  }
+
+  .s2 .chart {
+    flex: 1 1 320px;
+    max-width: 500px;
+  }
+
+  .s2 .chart img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .s2 .table-wrap {
+    flex: 1 1 500px;
+    max-width: 700px;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .s2 table {
+    width: 100%;
+    min-width: 460px;
+    border-collapse: collapse;
+    font-size: clamp(11px, 0.85vw, 14px);
+  }
+
+  .s2 table td {
+    padding: clamp(10px, 1.3vw, 16px) clamp(6px, 1vw, 12px);
+    text-align: center;
+    color: #4a4a6a;
+    white-space: nowrap;
+  }
+
+  .s2 table td.label {
+    text-align: center;
+  }
+
+  .s2 table tr.bg-blue td { background: #edf5ff; }
+  .s2 table tr.bold td { font-weight: 700; }
+  .s2 table tr.bordered td { border-bottom: 1px solid #e5eaf0; }
+
+  .s2 table tr.profit td {
+    background: #4a4a6a;
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  .s2 table td.accent {
+    color: #5298dd;
+    font-weight: 700;
+    text-align: right;
+  }
+
+  .s2 .footnotes {
+    margin-top: clamp(12px, 2vw, 20px);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .s2 .footnotes p {
+    color: #666666;
+    font-size: clamp(10px, 0.8vw, 14px);
+    line-height: 1.5;
+  }
+
+  .s2 .footnotes p:last-child {
+    color: #6b7280;
+  }
+
+  @media (max-width: 900px) {
+    .s2 .content-row { flex-direction: column; }
+    .s2 .chart { max-width: 360px; }
+    .s2 .table-wrap { max-width: 600px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="s2">
+  <div class="inner">
+    <div class="title">
+      <span class="label">expected return</span>
+      <h2>인건비 부담은 최소화,<br />운영 효율은 극대화</h2>
+      <p class="sub">다양한 상권에서 다년간 운영으로 검증을 마친 무인 수익 모델</p>
+    </div>
+
+    <div class="content-row">
+      <div class="chart">
+        <img src="assets/s2-piechart.png" alt="수익 구조 원형 그래프: 수익 53%, 원부자재 33%, i-MAD 이용료 4%, 부가세 4%" />
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr class="bg-blue bold">
+              <td class="label">평균 판매가</td>
+              <td class="accent" colspan="3">₩ 2,500</td>
+            </tr>
+            <tr class="bg-blue bold">
+              <td class="label">판매 잔 수(월)</td>
+              <td>4,500잔</td>
+              <td>7,500잔</td>
+              <td>9,000잔</td>
+            </tr>
+            <tr class="bordered">
+              <td class="label">예상 매출</td>
+              <td>₩ 11,250,000</td>
+              <td>₩ 18,750,000</td>
+              <td>₩ 22,500,000</td>
+            </tr>
+            <tr class="bordered">
+              <td class="label">결제 수수료 제외 매출</td>
+              <td>₩ 10,968,750</td>
+              <td>₩ 18,281,250</td>
+              <td>₩ 21,937,500</td>
+            </tr>
+            <tr class="bordered">
+              <td class="label">부가세</td>
+              <td>₩ 1,125,000</td>
+              <td>₩ 1,875,000</td>
+              <td>₩ 2,250,000원</td>
+            </tr>
+            <tr class="bordered">
+              <td class="label">원부자재</td>
+              <td>₩ 3,600,000</td>
+              <td>₩ 6,000,000</td>
+              <td>₩ 7,200,000</td>
+            </tr>
+            <tr class="bordered">
+              <td class="label">임대료 등 월 고정비</td>
+              <td>상이</td>
+              <td>상이</td>
+              <td>상이</td>
+            </tr>
+            <tr>
+              <td class="label">i-MAD 이용료 (AI 매장운영 OS)</td>
+              <td>₩ 390,000</td>
+              <td>₩ 390,000</td>
+              <td>₩ 390,000</td>
+            </tr>
+            <tr class="profit">
+              <td class="label">수익</td>
+              <td>₩ 5,853,750</td>
+              <td>₩ 10,016,250</td>
+              <td>₩ 12,097,500</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="footnotes">
+          <p>* 월 평균 주문 잔수 별 수익 예시</p>
+          <p>* 설치 매장별 월 유지비, 음료 판매가, 계약 방식에 따라 상이 합니다.</p>
+          <p>※ 본 수치는 참고용 예시이며, 실제 수익은 입지·운영 방식·시장 상황에 따라 달라질 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
