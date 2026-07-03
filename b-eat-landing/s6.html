@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S6 Comparison Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body { font-family: 'Pretendard', sans-serif; background: #ffffff; }
+
+  .s6 { width: 100%; background: #ffffff; }
+
+  .s6 .inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(40px, 5.7vw, 80px) clamp(20px, 4vw, 60px) clamp(55px, 7.9vw, 110px);
+  }
+
+  /* Title */
+  .s6 .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 1.6vw, 20px);
+    text-align: center;
+  }
+
+  .s6 .title .label {
+    border: 1px solid #5298dd;
+    border-radius: 32px;
+    padding: 10px 20px;
+    color: #5298dd;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 14px);
+    text-transform: uppercase;
+  }
+
+  .s6 .title h2 {
+    font-weight: 800;
+    font-size: clamp(22px, 3.2vw, 48px);
+    line-height: 1.25;
+  }
+
+  .s6 .title h2 span {
+    display: block;
+  }
+
+  .s6 .title h2 .line1 { color: #5298dd; }
+  .s6 .title h2 .line2 { color: #1a1a2e; }
+
+  /* Table */
+  .s6 .table-wrap {
+    margin-top: clamp(30px, 4.3vw, 60px);
+    box-shadow: 2px 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .s6 .table-scroll {
+    position: relative;
+    overflow-x: auto;
+  }
+
+  .s6 .highlight-frame {
+    position: absolute;
+    top: 0;
+    left: 14.3%;
+    width: 28.6%;
+    height: 100%;
+    border: 4px solid #5298dd;
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+
+  .s6 table {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: collapse;
+  }
+
+  .s6 th,
+  .s6 td {
+    padding: 14px 16px;
+    text-align: center;
+    font-size: clamp(12px, 0.95vw, 16px);
+    line-height: 1.5;
+  }
+
+  .s6 thead th {
+    height: 60px;
+    color: #ffffff;
+    font-weight: 700;
+    background: #4a4a6a;
+  }
+
+  .s6 thead th.highlight {
+    background: #5298dd;
+  }
+
+  .s6 tbody td {
+    border-bottom: 1px solid #e5eaf0;
+  }
+
+  .s6 tbody tr:nth-child(even) {
+    background: #f8f8f8;
+  }
+
+  .s6 tbody td.label {
+    font-weight: 600;
+    color: #1a1a2e;
+  }
+
+  .s6 tbody td.highlight {
+    font-weight: 700;
+    color: #5298dd;
+  }
+
+  .s6 tbody td.plain {
+    font-weight: 500;
+    color: #4a4a6a;
+  }
+</style>
+</head>
+<body>
+
+<section class="s6">
+  <div class="inner">
+    <div class="title">
+      <span class="label">comparison</span>
+      <h2>
+        <span class="line1">개인 시간과 수익을 동시에</span>
+        <span class="line2">더 편리한 로봇카페 b;eat</span>
+      </h2>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-scroll">
+      <table>
+        <colgroup>
+          <col style="width: 14.3%;" />
+          <col style="width: 28.6%;" />
+          <col style="width: 28.6%;" />
+          <col style="width: 28.6%;" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>비교 항목</th>
+            <th class="highlight">AI 로봇카페 b;eat</th>
+            <th>자판기형 무인카페 (공통 사례)</th>
+            <th>유인카페 (공통 사례)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">투잡 환경</td>
+            <td class="highlight">본업 외 수입원 가능</td>
+            <td class="plain">본업 외 수입원 가능</td>
+            <td class="plain">본업 운영 대다수 (인건비 부담)</td>
+          </tr>
+          <tr>
+            <td class="label">일 노동 시간</td>
+            <td class="highlight">1일 1시간 세정 및 원자재 보충</td>
+            <td class="plain">업체별 상이</td>
+            <td class="plain">직원과 교대 근무</td>
+          </tr>
+          <tr>
+            <td class="label">매장 운영 편의성</td>
+            <td class="highlight">본사 관제, 원격 관리, 원자재 자동 발주</td>
+            <td class="plain">점주 직접 관리, 고객 CS 직접 대응 필요</td>
+            <td class="plain">메뉴 제조, 프로모션 숙지 및 직원 교육 필요<br />원자재 등 매장 직접 운영</td>
+          </tr>
+          <tr>
+            <td class="label">주문, 제조 특성</td>
+            <td class="highlight">APP, KIOSK 주문, 5잔 동시 제조,<br />10잔까지 최대 20분 보관</td>
+            <td class="plain">KIOSK 다수, 제조 과정에 고객 역할 다수</td>
+            <td class="plain">KIOSK 외 일부 APP 주문,<br />직원 숙련도 별 음료 품질 차이</td>
+          </tr>
+          <tr>
+            <td class="label">시간당 제조량</td>
+            <td class="highlight">시간당 최대 70잔 ~</td>
+            <td class="plain">고객 이용 숙련도별 상이</td>
+            <td class="plain">직원 수 및 제조 숙련도별 상이</td>
+          </tr>
+          <tr>
+            <td class="label">마케팅 지원</td>
+            <td class="highlight">APP 멤버십 마케팅 자동화,<br />본사 마케팅 지원</td>
+            <td class="plain">프리퀀시, 생일 쿠폰 등 제한적</td>
+            <td class="plain">개인카페 : 매장 마케팅 직접 운영<br />프랜차이즈 : 본사 의존도 높음</td>
+          </tr>
+          <tr>
+            <td class="label">업무 강도</td>
+            <td class="highlight">낮음</td>
+            <td class="plain">높음</td>
+            <td class="plain">매우 높음</td>
+          </tr>
+          <tr>
+            <td class="label">자유 시간</td>
+            <td class="highlight">충분</td>
+            <td class="plain">다소 부족</td>
+            <td class="plain">부족</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="highlight-frame"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
