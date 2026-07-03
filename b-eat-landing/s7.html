@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>b:eat — S7 Interview Video Section</title>
+<title>b:eat — S7 Commercial Area Section</title>
 <link rel="stylesheet" as="style" crossorigin
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 100%; overflow-x: hidden; }
-  body { font-family: 'Pretendard', sans-serif; background: #1a1a2e; }
+  body { font-family: 'Pretendard', sans-serif; background: #ffffff; }
 
-  .s7 { width: 100%; background: #1a1a2e; }
+  .s7 { width: 100%; background: #ffffff; }
 
-  .s7 .inner {
+  .s7 .title-wrap {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: clamp(40px, 5.7vw, 80px) clamp(20px, 4vw, 60px) clamp(55px, 7.9vw, 110px);
+    padding: clamp(40px, 5.7vw, 80px) clamp(20px, 4vw, 60px) 0;
   }
 
   /* Title */
@@ -40,47 +40,370 @@
   }
 
   .s7 .title h2 {
-    color: #ffffff;
+    color: #1a1a2e;
     font-weight: 800;
-    font-size: clamp(24px, 3.2vw, 48px);
+    font-size: clamp(22px, 3.2vw, 48px);
+    line-height: 1.25;
   }
 
-  /* Video */
-  .s7 .video-wrap {
-    margin-top: clamp(30px, 4.3vw, 60px);
+  .s7 .title h2 .accent {
+    color: #5298dd;
+  }
+
+  .s7 .title .sub {
+    color: #4a4a6a;
+    font-weight: 400;
+    font-size: clamp(13px, 1.1vw, 20px);
+    line-height: 1.5;
+  }
+
+  /* Carousel: intentionally full width (100%), not capped at 1400px,
+     so cards can bleed to the viewport edge and scroll horizontally. */
+  .s7 .carousel {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.5);
-    background: #000000;
+    margin-top: clamp(30px, 4.3vw, 60px);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
 
-  .s7 .video-wrap iframe {
+  .s7 .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .s7 .carousel-track {
+    display: flex;
+    gap: clamp(16px, 2.1vw, 40px);
+    width: max-content;
+    padding: 0 clamp(20px, 4vw, 60px);
+  }
+
+  .s7 .card {
+    position: relative;
+    flex-shrink: 0;
+    width: clamp(260px, 26vw, 440px);
+    aspect-ratio: 440 / 380;
+    overflow: hidden;
+    box-shadow: 2px 6px 16px rgba(0, 0, 0, 0.12);
+    background: #1a1a2e;
+  }
+
+  .s7 .card .photo {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    display: block;
-    border: 0;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .s7 .card:hover .photo {
+    transform: scale(1.05);
+  }
+
+  .s7 .card .top-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 28%, rgba(0, 0, 0, 0) 75%);
+  }
+
+  .s7 .card .default-text {
+    position: absolute;
+    left: clamp(20px, 2.3vw, 40px);
+    top: clamp(20px, 2.3vw, 40px);
+    transition: opacity 0.3s ease;
+  }
+
+  .s7 .card .default-text .ko {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: clamp(20px, 2vw, 32px);
+    line-height: 1.25;
+  }
+
+  .s7 .card .default-text .en {
+    margin-top: 8px;
+    color: #86bbef;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 16px);
+  }
+
+  .s7 .card .hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: #1a1a2e;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .s7 .card .hover-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(6px, 0.8vw, 12px);
+    padding: clamp(16px, 2vw, 32px);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .s7 .card .hover-text .ko {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: clamp(20px, 2vw, 32px);
+    line-height: 1.25;
+  }
+
+  .s7 .card .hover-text .en {
+    color: #86bbef;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 16px);
+    margin-bottom: 4px;
+  }
+
+  .s7 .card .hover-text .tagline {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: clamp(13px, 1.1vw, 20px);
+    line-height: 1.5;
+    max-width: 350px;
+  }
+
+  .s7 .card:hover .default-text {
+    opacity: 0;
+  }
+
+  .s7 .card:hover .hover-overlay,
+  .s7 .card:hover .hover-text {
+    opacity: 1;
+  }
+
+  /* Nav buttons */
+  .s7 .nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: clamp(24px, 3.4vw, 40px);
+  }
+
+  .s7 .nav-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid #e5eaf0;
+    background: #ffffff;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .s7 .nav-btn:hover {
+    background: #edf5ff;
+  }
+
+  .s7 .nav-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: #4a4a6a;
+  }
+
+  @media (max-width: 640px) {
+    .s7 .nav-btn { width: 48px; height: 48px; }
   }
 </style>
 </head>
 <body>
 
 <section class="s7">
-  <div class="inner">
+  <div class="title-wrap">
     <div class="title">
-      <span class="label">Interview</span>
-      <h2>3 Track Client</h2>
-    </div>
-
-    <div class="video-wrap">
-      <iframe
-        src="https://www.youtube.com/embed/dzPyIsSomkk"
-        title="[로봇카페b;eat] [b;eat3X] 더욱 진화된 b;eat 3X"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
+      <span class="label">Commercial area</span>
+      <h2>
+        어느 곳에서나 <span class="accent">프리미엄 하이엔드</span><br />
+        로봇카페 b;eat
+      </h2>
+      <p class="sub">
+        무인 카페 솔루션 및 편의 기능을 적용하여 자유롭게 운영할 수 있으며,<br />
+        공간별 맞춤형 부가 수익 창출이 가능
+      </p>
     </div>
   </div>
+
+  <div class="carousel" id="s7-carousel">
+    <div class="carousel-track">
+
+      <div class="card">
+        <img class="photo" src="assets/s7-corporate.jpg" alt="기업" />
+        <div class="top-gradient"></div>
+        <div class="default-text">
+          <div class="ko">기업</div>
+          <div class="en">Corporate</div>
+        </div>
+        <div class="hover-overlay"></div>
+        <div class="hover-text">
+          <div class="ko">기업</div>
+          <div class="en">Corporate</div>
+          <p class="tagline">24시간 지치지 않는 사내 바리스타, 임직원의 워라밸을 높이는 가장 스마트한 사내 복지</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="photo" src="assets/s7-public.jpg" alt="공공기관" />
+        <div class="top-gradient"></div>
+        <div class="default-text">
+          <div class="ko">공공기관</div>
+          <div class="en">Public Institutions</div>
+        </div>
+        <div class="hover-overlay"></div>
+        <div class="hover-text">
+          <div class="ko">공공기관</div>
+          <div class="en">Public Institutions</div>
+          <p class="tagline">시민에게는 혁신적인 스마트 쉼터를, 관리자에게는 투명하고 편리한 무인 운영을 제공합니다.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="photo" src="assets/s7-restarea.jpg" alt="휴게소" />
+        <div class="top-gradient"></div>
+        <div class="default-text">
+          <div class="ko">휴게소</div>
+          <div class="en">Rest Areas</div>
+        </div>
+        <div class="hover-overlay"></div>
+        <div class="hover-text">
+          <div class="ko">휴게소</div>
+          <div class="en">Rest Areas</div>
+          <p class="tagline">심야에도 멈추지 않는 프리미엄 커피, 운전자의 피로를 깨우는 24시간 오아시스</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="photo" src="assets/s7-apartment.jpg" alt="아파트" />
+        <div class="top-gradient"></div>
+        <div class="default-text">
+          <div class="ko">아파트</div>
+          <div class="en">Apartments</div>
+        </div>
+        <div class="hover-overlay"></div>
+        <div class="hover-text">
+          <div class="ko">아파트</div>
+          <div class="en">Apartments</div>
+          <p class="tagline">우리 아파트의 품격을 한 단계 높여주는, 입주민 전용 24시간 프리미엄 라운지</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="photo" src="assets/s7-generic.jpg" alt="병원" />
+        <div class="top-gradient"></div>
+        <div class="default-text">
+          <div class="ko">병원</div>
+          <div class="en">Hospitals</div>
+        </div>
+        <div class="hover-overlay"></div>
+        <div class="hover-text">
+          <div class="ko">병원</div>
+          <div class="en">Hospitals</div>
+          <p class="tagline">보호자와 의료진을 위한 24시간 힐링 베이스, 비대면 로봇 기술로 위생과 안심까지 챙겼습니다.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="photo" src="assets/s7-university.jpg" alt="대학교" />
+        <div class="top-gradient"></div>
+        <div class="default-text">
+          <div class="ko">대학교</div>
+          <div class="en">Universities</div>
+        </div>
+        <div class="hover-overlay"></div>
+        <div class="hover-text">
+          <div class="ko">대학교</div>
+          <div class="en">Universities</div>
+          <p class="tagline">밤샘 도서관에도 든든한 지원군, 학생들의 템포에 맞춘 24시간 캠퍼스 스마트 카페</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="photo" src="assets/s7-hotel.jpg" alt="호텔" />
+        <div class="top-gradient"></div>
+        <div class="default-text">
+          <div class="ko">호텔</div>
+          <div class="en">Hotels</div>
+        </div>
+        <div class="hover-overlay"></div>
+        <div class="hover-text">
+          <div class="ko">호텔</div>
+          <div class="en">Hotels</div>
+          <p class="tagline">투숙객의 이른 아침과 늦은 밤을 완벽하게 책임지는, 하이엔드 무인 로비 라운지</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="photo" src="assets/s7-shopinshop.png" alt="샵인샵" />
+        <div class="top-gradient"></div>
+        <div class="default-text">
+          <div class="ko">샵인샵</div>
+          <div class="en">Shop-in-shop</div>
+        </div>
+        <div class="hover-overlay"></div>
+        <div class="hover-text">
+          <div class="ko">샵인샵</div>
+          <div class="en">Shop-in-shop</div>
+          <p class="tagline">기존 매장 내 1.5평의 마법, 추가 인건비 없이 빈 공간을 새로운 수익 창출구로 바꿉니다.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="photo" src="assets/s7-roadshop.jpg" alt="로드샵" />
+        <div class="top-gradient"></div>
+        <div class="default-text">
+          <div class="ko">로드샵</div>
+          <div class="en">Road shop</div>
+        </div>
+        <div class="hover-overlay"></div>
+        <div class="hover-text">
+          <div class="ko">로드샵</div>
+          <div class="en">Road shop</div>
+          <p class="tagline">인건비와 인력 관리 스트레스 제로, 24시간 스스로 일하며 수익을 퀄리티 있게 만들어냅니다.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <button type="button" class="nav-btn" id="s7-prev" aria-label="이전 카드">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button type="button" class="nav-btn" id="s7-next" aria-label="다음 카드">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  </div>
 </section>
+
+<script>
+  (function () {
+    var carousel = document.getElementById('s7-carousel');
+    var card = carousel.querySelector('.card');
+    function step() {
+      var cardWidth = card.getBoundingClientRect().width;
+      var gap = parseFloat(getComputedStyle(carousel.querySelector('.carousel-track')).gap) || 0;
+      return cardWidth + gap;
+    }
+    document.getElementById('s7-prev').addEventListener('click', function () {
+      carousel.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+    document.getElementById('s7-next').addEventListener('click', function () {
+      carousel.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+  })();
+</script>
 
 </body>
 </html>
