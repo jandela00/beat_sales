@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S1 Promotion Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body { font-family: 'Pretendard', sans-serif; }
+
+  .s1 {
+    width: 100%;
+    background: #5298dd;
+  }
+
+  /* Content container: full width, capped at 1400px, centered */
+  .s1 .inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(28px, 4.5vw, 52px) clamp(20px, 4vw, 60px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: clamp(24px, 4vw, 60px);
+  }
+
+  .s1 .text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(10px, 1.2vw, 16px);
+  }
+
+  .s1 .label {
+    border: 1px solid #ffffff;
+    border-radius: 32px;
+    padding: 10px 20px;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 14px);
+    white-space: nowrap;
+  }
+
+  .s1 .headline {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: clamp(24px, 3.2vw, 48px);
+    line-height: 1.15;
+  }
+
+  .s1 .sub {
+    color: #edf5ff;
+    font-weight: 500;
+    font-size: clamp(12px, 0.9vw, 16px);
+  }
+
+  .s1 .visual {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+  }
+
+  .s1 .visual .kiosk {
+    width: clamp(160px, 16vw, 320px);
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .s1 .badge {
+    position: absolute;
+    top: -12%;
+    right: -10%;
+    width: clamp(60px, 5.5vw, 98px);
+    height: clamp(60px, 5.5vw, 98px);
+  }
+
+  .s1 .badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .s1 .badge span {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #5b3a0b;
+    font-weight: 800;
+    font-size: clamp(10px, 1vw, 20px);
+    line-height: 1.15;
+  }
+
+  @media (max-width: 720px) {
+    .s1 .inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .s1 .text {
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="s1">
+  <div class="inner">
+    <div class="text">
+      <span class="label">10TH ANNIVERSARY PROMOTION</span>
+      <p class="headline">선착순 1,000만원 도입비 지원</p>
+      <p class="sub">(설치비, 키오스크, 교육비, 초도 물품, 정기 점검비 등 면제)</p>
+    </div>
+    <div class="visual">
+      <img class="kiosk" src="assets/s1-kiosk.png" alt="b:eat 부스 및 키오스크" />
+      <div class="badge">
+        <img src="assets/s1-star.svg" alt="" />
+        <span>도입비<br />지원</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
