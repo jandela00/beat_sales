@@ -47,6 +47,7 @@
     color: #1a1a2e;
     font-weight: 800;
     font-size: clamp(24px, 3.2vw, 48px);
+    line-height: 1.25;
   }
 
   .s9 .title .sub {
@@ -73,6 +74,7 @@
     max-width: 746px;
     display: flex;
     flex-direction: column;
+    gap: clamp(20px, 5.7vw, 40px);
   }
 
   .s9 .blend {
@@ -80,7 +82,6 @@
     align-items: center;
     justify-content: space-between;
     gap: clamp(16px, 3vw, 40px);
-    padding: clamp(16px, 2.3vw, 20px) 0;
     flex-wrap: wrap;
   }
 
@@ -88,6 +89,7 @@
     color: #1a1a2e;
     font-weight: 800;
     font-size: clamp(18px, 2vw, 28px);
+    line-height: 1;
   }
 
   .s9 .blend-info .desc {
@@ -101,18 +103,18 @@
     color: #4a4a6a;
     font-weight: 500;
     font-size: clamp(12px, 1vw, 16px);
-    line-height: 1.4;
+    line-height: 1;
   }
 
   .s9 .blend-taste {
     display: flex;
-    gap: clamp(20px, 3vw, 40px);
+    gap: clamp(28px, 4vw, 56px);
   }
 
   .s9 .taste-col {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: clamp(16px, 2.1vw, 30px);
   }
 
   .s9 .taste-row {
@@ -125,6 +127,7 @@
     color: #5298dd;
     font-weight: 700;
     font-size: clamp(12px, 0.9vw, 16px);
+    line-height: 1;
     width: clamp(24px, 1.8vw, 32px);
     flex-shrink: 0;
   }
@@ -138,6 +141,16 @@
     width: clamp(12px, 1.1vw, 19px);
     height: auto;
     display: block;
+  }
+
+  /* Figma quirk: in the "향미" row only, dots 2-4 are rendered slightly
+     larger (20x22) than dots 1 and 5 (19x20). 향미 is always the first
+     taste-row in the first column. */
+  .s9 .taste-col:first-child .taste-row:first-child .dots img:nth-child(2),
+  .s9 .taste-col:first-child .taste-row:first-child .dots img:nth-child(3),
+  .s9 .taste-col:first-child .taste-row:first-child .dots img:nth-child(4) {
+    width: clamp(13px, 1.16vw, 20px);
+    height: clamp(14px, 1.28vw, 22px);
   }
 
   .s9 .divider {
@@ -192,6 +205,11 @@
     width: clamp(240px, 24vw, 440px);
     aspect-ratio: 440 / 390;
     overflow: hidden;
+    box-shadow: 0px 3px 8px rgba(26, 26, 46, 0.12);
+  }
+
+  .s9 .carousel-track .menu-card:nth-child(3),
+  .s9 .carousel-track .menu-card:nth-child(4) {
     box-shadow: 0px 3px 16px rgba(26, 26, 46, 0.12);
   }
 
