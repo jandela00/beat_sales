@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S8 Hybrid Concept Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body { font-family: 'Pretendard', sans-serif; background: #ffffff; }
+
+  .s8 { width: 100%; background: #ffffff; }
+
+  .s8 .inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(40px, 5.7vw, 80px) clamp(20px, 4vw, 60px) clamp(55px, 7.9vw, 110px);
+  }
+
+  /* Title */
+  .s8 .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 2.2vw, 30px);
+    text-align: center;
+  }
+
+  .s8 .title .label {
+    border: 1px solid #5298dd;
+    border-radius: 32px;
+    padding: 10px 20px;
+    color: #5298dd;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 14px);
+    text-transform: uppercase;
+  }
+
+  .s8 .title h2 {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(24px, 3.2vw, 48px);
+    line-height: 1.25;
+  }
+
+  .s8 .title h2 .accent {
+    color: #5298dd;
+  }
+
+  /* Overlapping photo + panel stage */
+  .s8 .stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1400 / 650;
+    margin-top: clamp(30px, 4.3vw, 60px);
+  }
+
+  .s8 .photo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 64.29%;
+    height: 92.31%;
+    overflow: hidden;
+    box-shadow: 2px 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .s8 .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .s8 .panel {
+    position: absolute;
+    right: 0;
+    top: 37.23%;
+    width: 41.71%;
+    height: 62.77%;
+    background: #5298dd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(16px, 2vw, 32px);
+    padding: clamp(20px, 4vw, 56px) clamp(24px, 5vw, 64px);
+    color: #ffffff;
+  }
+
+  .s8 .panel .main-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 800;
+    font-size: clamp(16px, 1.5vw, 28px);
+    line-height: 1.25;
+  }
+
+  .s8 .panel .sub-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: 500;
+    font-size: clamp(11px, 0.85vw, 16px);
+    line-height: 1.4;
+  }
+
+  .s8 .controls {
+    position: absolute;
+    left: 68.57%;
+    top: 26.15%;
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.3vw, 20px);
+  }
+
+  .s8 .controls .arrow-btn {
+    width: clamp(28px, 3vw, 42px);
+    height: clamp(28px, 3vw, 42px);
+    border-radius: 50%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  .s8 .controls .arrow-btn:hover {
+    background: #edf5ff;
+  }
+
+  .s8 .controls .arrow-btn svg {
+    width: 60%;
+    height: 60%;
+    stroke: #4a4a6a;
+    transition: stroke 0.2s ease;
+  }
+
+  .s8 .controls .arrow-btn:hover svg {
+    stroke: #5298dd;
+  }
+
+  .s8 .controls .count {
+    font-weight: 500;
+    font-size: clamp(14px, 1.4vw, 24px);
+    color: #d1d1d1;
+    white-space: nowrap;
+  }
+
+  .s8 .controls .count .current {
+    font-weight: 800;
+    color: #1a1a2e;
+  }
+
+  @media (max-width: 860px) {
+    .s8 .stage {
+      aspect-ratio: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .s8 .photo {
+      position: static;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 900 / 600;
+    }
+    .s8 .panel {
+      position: static;
+      width: 100%;
+      height: auto;
+      padding: 28px 24px;
+    }
+    .s8 .controls {
+      position: static;
+      justify-content: center;
+      margin-top: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="s8">
+  <div class="inner">
+    <div class="title">
+      <span class="label">hybrid CONCEPT</span>
+      <h2>
+        유·무인 <span class="accent">하이브리드 매장</span><br />
+        비트카페 야탑역점
+      </h2>
+    </div>
+
+    <div class="stage">
+      <div class="photo">
+        <img src="assets/s8-store.jpg" alt="비트카페 야탑역점 매장 전경" />
+      </div>
+
+      <div class="controls">
+        <button type="button" class="arrow-btn" id="s8-prev" aria-label="이전 매장">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <span class="count"><span class="current" id="s8-current">1</span> / 3</span>
+        <button type="button" class="arrow-btn" id="s8-next" aria-label="다음 매장">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      <div class="panel">
+        <div class="main-text">
+          <p>b;eat와 사람의 협동 매장</p>
+          <p>최소 인력, 최적의 시너지 효과</p>
+        </div>
+        <div class="sub-text">
+          <p>로봇커피와 협동으로 일부 시간대 유인 운영으로</p>
+          <p>베이커리 등 부가 콘텐츠로 매출을 다각화하는</p>
+          <p>스마트한 F&amp;B 솔루션</p>
+        </div>
+        <div class="sub-text">
+          <p>배달 서비스 대응 가능하여 오프라인 매출 외에</p>
+          <p>온라인 배달 채널을 통한 추가 수익 창출 가능</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var total = 3;
+    var current = 1;
+    var currentEl = document.getElementById('s8-current');
+
+    function render() {
+      currentEl.textContent = current;
+    }
+
+    document.getElementById('s8-prev').addEventListener('click', function () {
+      current = current === 1 ? total : current - 1;
+      render();
+    });
+
+    document.getElementById('s8-next').addEventListener('click', function () {
+      current = current === total ? 1 : current + 1;
+      render();
+    });
+  })();
+</script>
+
+</body>
+</html>
