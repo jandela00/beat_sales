@@ -11,7 +11,7 @@
   html, body { width: 100%; overflow-x: hidden; }
   body { font-family: 'Pretendard', sans-serif; background: #ffffff; }
 
-  .s7 { width: 100%; background: #ffffff; }
+  .s7 { width: 100%; background: #ffffff; padding-bottom: clamp(40px, 5.7vw, 80px); }
 
   .s7 .title-wrap {
     width: 100%;
@@ -62,10 +62,19 @@
   .s7 .carousel {
     width: 100%;
     margin-top: clamp(30px, 4.3vw, 60px);
+    padding: 20px 0;
+    margin-bottom: -20px;
     overflow-x: auto;
+    overflow-y: visible;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    cursor: grab;
+  }
+
+  .s7 .carousel.dragging {
+    scroll-behavior: auto;
+    cursor: grabbing;
   }
 
   .s7 .carousel::-webkit-scrollbar {
@@ -402,6 +411,49 @@
     document.getElementById('s7-next').addEventListener('click', function () {
       carousel.scrollBy({ left: step(), behavior: 'smooth' });
     });
+
+    // Vertical wheel scroll -> horizontal
+    carousel.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        carousel.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    // Click-and-drag to scroll
+    var isDown = false;
+    var startX = 0;
+    var startScroll = 0;
+    var moved = false;
+
+    carousel.addEventListener('mousedown', function (e) {
+      isDown = true;
+      moved = false;
+      carousel.classList.add('dragging');
+      startX = e.pageX;
+      startScroll = carousel.scrollLeft;
+    });
+
+    window.addEventListener('mousemove', function (e) {
+      if (!isDown) return;
+      var dx = e.pageX - startX;
+      if (Math.abs(dx) > 3) moved = true;
+      carousel.scrollLeft = startScroll - dx;
+    });
+
+    window.addEventListener('mouseup', function () {
+      if (!isDown) return;
+      isDown = false;
+      carousel.classList.remove('dragging');
+    });
+
+    // Prevent link/hover clicks from firing right after a drag
+    carousel.addEventListener('click', function (e) {
+      if (moved) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
   })();
 </script>
 
