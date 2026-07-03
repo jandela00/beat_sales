@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S4 Key Point Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body { font-family: 'Pretendard', sans-serif; }
+
+  .s4 {
+    width: 100%;
+    background: linear-gradient(to bottom, #ffffff, #edf5ff);
+  }
+
+  .s4 .inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(40px, 5.7vw, 80px) clamp(20px, 4vw, 60px) clamp(55px, 7.9vw, 110px);
+  }
+
+  /* Title */
+  .s4 .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 1.6vw, 20px);
+    text-align: center;
+  }
+
+  .s4 .title .label {
+    border: 1px solid #5298dd;
+    border-radius: 32px;
+    padding: 10px 20px;
+    color: #5298dd;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 14px);
+    text-transform: uppercase;
+  }
+
+  .s4 .title h2 {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(22px, 3.2vw, 48px);
+    line-height: 1.25;
+  }
+
+  .s4 .title h2 .accent {
+    color: #5298dd;
+  }
+
+  /* Card grid */
+  .s4 .cards {
+    margin-top: clamp(30px, 4.3vw, 60px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(20px, 2.3vw, 32px);
+  }
+
+  .s4 .card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #d5eaff;
+    padding: clamp(20px, 2.3vw, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 1.7vw, 24px);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .s4 .card:hover {
+    border-color: transparent;
+    box-shadow: 2px 4px 16px rgba(82, 152, 221, 0.2);
+  }
+
+  .s4 .card .num {
+    color: #86bbef;
+    font-weight: 500;
+    font-size: clamp(24px, 2.6vw, 36px);
+    line-height: 1;
+  }
+
+  .s4 .card .card-title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .s4 .card .card-title p {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.15;
+  }
+
+  .s4 .card .card-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .s4 .card .card-sub p {
+    color: #4a4a6a;
+    font-weight: 500;
+    font-size: clamp(12px, 1.1vw, 16px);
+    line-height: 1.3;
+  }
+
+  @media (max-width: 1024px) {
+    .s4 .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .s4 .cards { grid-template-columns: 1fr; }
+    .s4 .title h2 br { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="s4">
+  <div class="inner">
+    <div class="title">
+      <span class="label">Key point</span>
+      <h2>
+        국내 최초 무인 매장 운영 자동화 솔루션<br />
+        이래서 <span class="accent">b;eat가 정답!</span>
+      </h2>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <span class="num">1.</span>
+        <div class="card-title">
+          <p>365일 24시간</p>
+          <p>상시 운영 가능</p>
+        </div>
+        <div class="card-sub">
+          <p>공백 없는 운영으로 3교대 근무</p>
+          <p>환경에 최적화된 서비스 제공</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="num">2.</span>
+        <div class="card-title">
+          <p>지능형</p>
+          <p>원격 제어</p>
+        </div>
+        <div class="card-sub">
+          <p>실시간 모니터링 및 원격 장애 복구</p>
+          <p>관리 공백 최소화</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="num">3.</span>
+        <div class="card-title">
+          <p>체계적인</p>
+          <p>장비 세정 툴 서비스</p>
+        </div>
+        <div class="card-sub">
+          <p>매뉴얼 제공을 통해 정교한 관리 지원으로</p>
+          <p>휴먼 에러 방지</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="num">4.</span>
+        <div class="card-title">
+          <p>스마트</p>
+          <p>자동 발주</p>
+        </div>
+        <div class="card-sub">
+          <p>원부자재 잔량 정밀 체크를 통한</p>
+          <p>최적의 재고 관리 및 자동 발주 시스템</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="num">5.</span>
+        <div class="card-title">
+          <p>APPㆍKIOSK</p>
+          <p>동시 사용</p>
+        </div>
+        <div class="card-sub">
+          <p>두 가지 주문 방식으로</p>
+          <p>고객 대기시간 해소</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="num">6.</span>
+        <div class="card-title">
+          <p>공인 로봇 바리스타</p>
+          <p>자격증 취득</p>
+        </div>
+        <div class="card-sub">
+          <p>검증된 레시피와 24시간 변함없는</p>
+          <p>균일한 맛 보장</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="num">7.</span>
+        <div class="card-title">
+          <p>동시 5잔 병렬 제조</p>
+          <p>최대 10잔 보관</p>
+        </div>
+        <div class="card-sub">
+          <p>동시 주문 건 처리 알고리즘을 통해</p>
+          <p>빠른 음료 제조</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="num">8.</span>
+        <div class="card-title">
+          <p>기술 평가 A등급,</p>
+          <p>특허 24종 보유</p>
+        </div>
+        <div class="card-sub">
+          <p>동종 업계 최다 보유</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
