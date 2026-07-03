@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S9 Beverage Quality Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body { font-family: 'Pretendard', sans-serif; }
+
+  .s9 {
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(237, 245, 255, 0.5), rgba(255, 255, 255, 0.5));
+    padding-bottom: clamp(30px, 3.6vw, 50px);
+  }
+
+  .s9 .title-wrap {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(40px, 5.7vw, 80px) clamp(20px, 4vw, 60px) 0;
+  }
+
+  /* Title */
+  .s9 .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 1.6vw, 20px);
+    text-align: center;
+  }
+
+  .s9 .title .label {
+    border: 1px solid #5298dd;
+    border-radius: 32px;
+    padding: 10px 20px;
+    color: #5298dd;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 14px);
+    text-transform: uppercase;
+  }
+
+  .s9 .title h2 {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(24px, 3.2vw, 48px);
+  }
+
+  .s9 .title .sub {
+    color: #4a4a6a;
+    font-weight: 400;
+    font-size: clamp(13px, 1.1vw, 20px);
+    line-height: 1.5;
+  }
+
+  /* Beans row */
+  .s9 .beans-row {
+    max-width: 1400px;
+    margin: clamp(40px, 9.8vw, 137px) auto 0;
+    padding: 0 clamp(20px, 4vw, 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(24px, 8.5vw, 120px);
+    flex-wrap: wrap;
+  }
+
+  .s9 .beans-list {
+    flex: 1 1 560px;
+    max-width: 746px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .s9 .blend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(16px, 3vw, 40px);
+    padding: clamp(16px, 2.3vw, 20px) 0;
+    flex-wrap: wrap;
+  }
+
+  .s9 .blend-info h3 {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 28px);
+  }
+
+  .s9 .blend-info .desc {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .s9 .blend-info .desc p {
+    color: #4a4a6a;
+    font-weight: 500;
+    font-size: clamp(12px, 1vw, 16px);
+    line-height: 1.4;
+  }
+
+  .s9 .blend-taste {
+    display: flex;
+    gap: clamp(20px, 3vw, 40px);
+  }
+
+  .s9 .taste-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .s9 .taste-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .s9 .taste-row .taste-label {
+    color: #5298dd;
+    font-weight: 700;
+    font-size: clamp(12px, 0.9vw, 16px);
+    width: clamp(24px, 1.8vw, 32px);
+    flex-shrink: 0;
+  }
+
+  .s9 .taste-row .dots {
+    display: flex;
+    gap: 4px;
+  }
+
+  .s9 .taste-row .dots img {
+    width: clamp(12px, 1.1vw, 19px);
+    height: auto;
+    display: block;
+  }
+
+  .s9 .divider {
+    height: 1px;
+    background: rgba(134, 187, 239, 0.5);
+    width: 100%;
+  }
+
+  .s9 .bean-photo {
+    flex: 0 1 360px;
+    max-width: 467px;
+  }
+
+  .s9 .bean-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* New menu carousel (same pattern as S7) */
+  .s9 .carousel {
+    width: 100%;
+    margin-top: clamp(40px, 9vw, 127px);
+    padding: 20px 0;
+    margin-bottom: -20px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+
+  .s9 .carousel.dragging {
+    scroll-behavior: auto;
+    cursor: grabbing;
+  }
+
+  .s9 .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .s9 .carousel-track {
+    display: flex;
+    gap: clamp(16px, 2.1vw, 40px);
+    width: max-content;
+    padding: 0 clamp(20px, 4vw, 60px);
+  }
+
+  .s9 .menu-card {
+    flex-shrink: 0;
+    width: clamp(240px, 24vw, 440px);
+    aspect-ratio: 440 / 390;
+    overflow: hidden;
+    box-shadow: 0px 3px 16px rgba(26, 26, 46, 0.12);
+  }
+
+  .s9 .menu-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 860px) {
+    .s9 .beans-row { justify-content: center; }
+    .s9 .bean-photo { order: -1; max-width: 260px; }
+    .s9 .blend { justify-content: center; text-align: center; }
+    .s9 .blend-taste { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<section class="s9">
+  <div class="title-wrap">
+    <div class="title">
+      <span class="label">Beverage Quality</span>
+      <h2>고급 원두 + 시즌 신메뉴</h2>
+      <p class="sub">
+        b;eat는 에티오피아, 콜롬비아 등 세계 최상급 산지의 100% 아라비카 원두만을 사용<br />
+        계절에 맞는 시즌 신메뉴를 주기적으로 출시하여 고객의 재방문 동기를 지속적으로 제공
+      </p>
+    </div>
+  </div>
+
+  <div class="beans-row">
+    <div class="beans-list">
+
+      <div class="blend">
+        <div class="blend-info">
+          <h3>시그니처 블렌드</h3>
+          <div class="desc">
+            <p>밀크 초콜릿의 균형 잡힌 단맛과 기분 좋은 쓴맛,</p>
+            <p>풍부한 바디감으로 깊은 여운을 주는 커피</p>
+          </div>
+        </div>
+        <div class="blend-taste">
+          <div class="taste-col">
+            <div class="taste-row"><span class="taste-label">향미</span><span class="dots" data-rating="4"></span></div>
+            <div class="taste-row"><span class="taste-label">산미</span><span class="dots" data-rating="3"></span></div>
+            <div class="taste-row"><span class="taste-label">단맛</span><span class="dots" data-rating="5"></span></div>
+          </div>
+          <div class="taste-col">
+            <div class="taste-row"><span class="taste-label">바디</span><span class="dots" data-rating="4"></span></div>
+            <div class="taste-row"><span class="taste-label">후미</span><span class="dots" data-rating="4"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="blend">
+        <div class="blend-info">
+          <h3>브라이트 블렌드</h3>
+          <div class="desc">
+            <p>은은하고 부드러운 단맛의 편안함과 세밀한</p>
+            <p>레이어감이 무겁지 않게 고급스러운 맛의 커피</p>
+          </div>
+        </div>
+        <div class="blend-taste">
+          <div class="taste-col">
+            <div class="taste-row"><span class="taste-label">향미</span><span class="dots" data-rating="5"></span></div>
+            <div class="taste-row"><span class="taste-label">산미</span><span class="dots" data-rating="4"></span></div>
+            <div class="taste-row"><span class="taste-label">단맛</span><span class="dots" data-rating="4"></span></div>
+          </div>
+          <div class="taste-col">
+            <div class="taste-row"><span class="taste-label">바디</span><span class="dots" data-rating="3"></span></div>
+            <div class="taste-row"><span class="taste-label">후미</span><span class="dots" data-rating="4"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="blend">
+        <div class="blend-info">
+          <h3>프라넬 코롬비아 디카페인</h3>
+          <div class="desc">
+            <p>밀크 초콜릿의 탄탄한 단맛과 은은한 오렌지 아로마가</p>
+            <p>어우러진 슈가케인 공법의 고품절 디카페인</p>
+          </div>
+        </div>
+        <div class="blend-taste">
+          <div class="taste-col">
+            <div class="taste-row"><span class="taste-label">향미</span><span class="dots" data-rating="4"></span></div>
+            <div class="taste-row"><span class="taste-label">산미</span><span class="dots" data-rating="4"></span></div>
+            <div class="taste-row"><span class="taste-label">단맛</span><span class="dots" data-rating="5"></span></div>
+          </div>
+          <div class="taste-col">
+            <div class="taste-row"><span class="taste-label">바디</span><span class="dots" data-rating="4"></span></div>
+            <div class="taste-row"><span class="taste-label">후미</span><span class="dots" data-rating="4"></span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bean-photo">
+      <img src="assets/s9-beanbags.png" alt="b:eat 시그니처 블렌드, 브라이트 블렌드 원두 패키지" />
+    </div>
+  </div>
+
+  <div class="carousel" id="s9-carousel">
+    <div class="carousel-track">
+      <div class="menu-card"><img src="assets/s9-menu1.png" alt="납작복숭아 망고 아이스티" /></div>
+      <div class="menu-card"><img src="assets/s9-menu2.jpg" alt="벚꽃 캐모마일 티" /></div>
+      <div class="menu-card"><img src="assets/s9-menu3.png" alt="데일리풀비타" /></div>
+      <div class="menu-card"><img src="assets/s9-menu4.png" alt="콜라겐 석류주스" /></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    // Render taste-rating dots
+    var filledSrc = 'assets/s9-dot-filled.svg';
+    var emptySrc = 'assets/s9-dot-empty.svg';
+    document.querySelectorAll('.s9 .dots').forEach(function (el) {
+      var rating = parseInt(el.getAttribute('data-rating'), 10) || 0;
+      for (var i = 0; i < 5; i++) {
+        var img = document.createElement('img');
+        img.src = i < rating ? filledSrc : emptySrc;
+        img.alt = '';
+        el.appendChild(img);
+      }
+    });
+
+    // Carousel: drag-to-scroll + wheel + touch-friendly
+    var carousel = document.getElementById('s9-carousel');
+    var isDown = false;
+    var startX = 0;
+    var startScroll = 0;
+
+    carousel.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        carousel.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    carousel.addEventListener('mousedown', function (e) {
+      isDown = true;
+      carousel.classList.add('dragging');
+      startX = e.pageX;
+      startScroll = carousel.scrollLeft;
+    });
+
+    window.addEventListener('mousemove', function (e) {
+      if (!isDown) return;
+      carousel.scrollLeft = startScroll - (e.pageX - startX);
+    });
+
+    window.addEventListener('mouseup', function () {
+      isDown = false;
+      carousel.classList.remove('dragging');
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -109,12 +109,27 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% 50%;
     transition: transform 0.4s ease;
   }
 
   .s7 .card:hover .photo {
     transform: scale(1.05);
   }
+
+  /* Per-card crop position, matched to each source photo's framing in Figma
+     (derived from each card's absolute image-box offset; several are not
+     centered — 공공기관 and 로드샵 in particular are cropped flush to the
+     top of the source image). */
+  .s7 .carousel-track .card:nth-child(1) .photo { object-position: 20% 17%; }
+  .s7 .carousel-track .card:nth-child(2) .photo { object-position: 73% 0%; }
+  .s7 .carousel-track .card:nth-child(3) .photo { object-position: 79% 50%; }
+  .s7 .carousel-track .card:nth-child(4) .photo { object-position: 81% 64%; }
+  .s7 .carousel-track .card:nth-child(5) .photo { object-position: 53% 41%; }
+  .s7 .carousel-track .card:nth-child(6) .photo { object-position: 83% 57%; }
+  .s7 .carousel-track .card:nth-child(7) .photo { object-position: 63% 46%; }
+  .s7 .carousel-track .card:nth-child(8) .photo { object-position: 50% 51%; }
+  .s7 .carousel-track .card:nth-child(9) .photo { object-position: 96% 0%; }
 
   .s7 .card .top-gradient {
     position: absolute;
@@ -141,6 +156,10 @@
     color: #86bbef;
     font-weight: 500;
     font-size: clamp(11px, 0.9vw, 16px);
+  }
+
+  .s7 .card .en.bold {
+    font-weight: 700;
   }
 
   .s7 .card .hover-overlay {
@@ -378,12 +397,12 @@
         <div class="top-gradient"></div>
         <div class="default-text">
           <div class="ko">로드샵</div>
-          <div class="en">Road shop</div>
+          <div class="en bold">Road shop</div>
         </div>
         <div class="hover-overlay"></div>
         <div class="hover-text">
           <div class="ko">로드샵</div>
-          <div class="en">Road shop</div>
+          <div class="en bold">Road shop</div>
           <p class="tagline">인건비와 인력 관리 스트레스 제로, 24시간 스스로 일하며 수익을 퀄리티 있게 만들어냅니다.</p>
         </div>
       </div>
