@@ -134,23 +134,15 @@
 
   .s9 .taste-row .dots {
     display: flex;
+    align-items: center;
     gap: 4px;
   }
 
   .s9 .taste-row .dots img {
     width: clamp(12px, 1.1vw, 19px);
-    height: auto;
+    height: clamp(13px, 1.16vw, 20px);
+    flex-shrink: 0;
     display: block;
-  }
-
-  /* Figma quirk: in the "향미" row only, dots 2-4 are rendered slightly
-     larger (20x22) than dots 1 and 5 (19x20). 향미 is always the first
-     taste-row in the first column. */
-  .s9 .taste-col:first-child .taste-row:first-child .dots img:nth-child(2),
-  .s9 .taste-col:first-child .taste-row:first-child .dots img:nth-child(3),
-  .s9 .taste-col:first-child .taste-row:first-child .dots img:nth-child(4) {
-    width: clamp(13px, 1.16vw, 20px);
-    height: clamp(14px, 1.28vw, 22px);
   }
 
   .s9 .divider {
