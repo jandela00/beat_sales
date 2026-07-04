@@ -21,7 +21,7 @@
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: clamp(40px, 5.7vw, 80px) clamp(20px, 4vw, 60px) 0;
+    padding: clamp(40px, 5.7vw, 80px) 0 0;
   }
 
   /* Title */
@@ -61,7 +61,7 @@
   .s9 .beans-row {
     max-width: 1400px;
     margin: clamp(40px, 8.3vw, 116px) auto 0;
-    padding: 0 clamp(20px, 4vw, 60px);
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -165,7 +165,7 @@
   /* New menu carousel (same pattern as S7) */
   .s9 .carousel {
     width: 100%;
-    margin-top: clamp(40px, 8.3vw, 116px);
+    margin-top: 50px;
     padding: 20px 0;
     margin-bottom: -20px;
     overflow-x: auto;
@@ -189,7 +189,9 @@
     display: flex;
     gap: clamp(16px, 2.1vw, 40px);
     width: max-content;
-    padding: 0 clamp(20px, 4vw, 60px);
+    /* Align the first card's left edge flush with the 1400px container's
+       own edge (title-wrap/beans-row now have no side gutter either). */
+    padding: 0 max(0px, (100vw - 1400px) / 2);
   }
 
   .s9 .menu-card {
