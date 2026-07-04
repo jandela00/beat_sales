@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S11 Marketing Support Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body { font-family: 'Pretendard', sans-serif; }
+
+  .s11 {
+    width: 100%;
+    background: linear-gradient(to bottom, #ffffff, #edf5ff);
+  }
+
+  .s11 .inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(40px, 5.7vw, 80px) 0 clamp(55px, 7.9vw, 110px);
+  }
+
+  /* Title */
+  .s11 .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 1.6vw, 20px);
+    text-align: center;
+  }
+
+  .s11 .title .label {
+    border: 1px solid #5298dd;
+    border-radius: 32px;
+    padding: 10px 20px;
+    color: #5298dd;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 14px);
+    text-transform: uppercase;
+  }
+
+  .s11 .title h2 {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(22px, 3.2vw, 48px);
+    line-height: 1.25;
+  }
+
+  .s11 .title h2 .accent {
+    color: #5298dd;
+  }
+
+  .s11 .title .sub {
+    color: #4a4a6a;
+    font-weight: 400;
+    font-size: clamp(13px, 1.1vw, 20px);
+  }
+
+  /* Photo gallery */
+  .s11 .gallery {
+    margin-top: clamp(30px, 4.3vw, 60px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 0.9vw, 12px);
+  }
+
+  .s11 .gallery-row {
+    display: flex;
+    gap: clamp(8px, 0.9vw, 12px);
+  }
+
+  .s11 .gallery-row img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .s11 .row-top .cell {
+    aspect-ratio: 502 / 282;
+    overflow: hidden;
+  }
+
+  .s11 .row-top .cell:nth-child(1),
+  .s11 .row-top .cell:nth-child(2) {
+    flex: 502;
+  }
+
+  .s11 .row-top .cell:nth-child(3) {
+    flex: 372;
+  }
+
+  .s11 .row-bottom .cell {
+    flex: 1;
+    aspect-ratio: 341 / 291;
+    overflow: hidden;
+  }
+
+  @media (max-width: 860px) {
+    .s11 .row-top,
+    .s11 .row-bottom {
+      flex-wrap: wrap;
+    }
+    .s11 .row-top .cell,
+    .s11 .row-bottom .cell {
+      flex: 1 1 45%;
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="s11">
+  <div class="inner">
+    <div class="title">
+      <span class="label">Marketing support</span>
+      <h2>매장의 매출 증진을 위한 다양한 <span class="accent">마케팅 지원</span></h2>
+      <p class="sub">브랜드 협업 티켓, SNS 이벤트, MD 경품 증정 마케팅 등</p>
+    </div>
+
+    <div class="gallery">
+      <div class="gallery-row row-top">
+        <div class="cell"><img src="assets/s11-1.png" alt="비트x티니핑월드 사이니지 이벤트" /></div>
+        <div class="cell"><img src="assets/s11-2.jpg" alt="미션 임파서블 영화 예매권 증정 이벤트" /></div>
+        <div class="cell"><img src="assets/s11-3.jpg" alt="와일드씽 예매권 이벤트" /></div>
+      </div>
+      <div class="gallery-row row-bottom">
+        <div class="cell"><img src="assets/s11-4.jpg" alt="2025 권은비 콘서트 티켓링크" /></div>
+        <div class="cell"><img src="assets/s11-5.jpg" alt="숏폼 콘테스트 SNS 이벤트" /></div>
+        <div class="cell"><img src="assets/s11-6.jpg" alt="트랜스포머 원 영화 이벤트" /></div>
+        <div class="cell"><img src="assets/s11-7.jpg" alt="아메리카노 1000원 할인 이벤트" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
