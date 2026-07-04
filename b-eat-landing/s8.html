@@ -204,7 +204,7 @@
 
     <div class="stage">
       <div class="photo">
-        <img src="assets/s8-store.jpg" alt="비트카페 야탑역점 매장 전경" />
+        <img id="s8-photo" src="assets/s8-store-1.png" alt="비트카페 야탑역점 매장 전경" />
       </div>
 
       <div class="controls">
@@ -238,12 +238,15 @@
 
 <script>
   (function () {
-    var total = 3;
+    var photos = ['assets/s8-store-1.png', 'assets/s8-store-2.png', 'assets/s8-store-3.jpg'];
+    var total = photos.length;
     var current = 1;
     var currentEl = document.getElementById('s8-current');
+    var photoEl = document.getElementById('s8-photo');
 
     function render() {
       currentEl.textContent = current;
+      photoEl.src = photos[current - 1];
     }
 
     document.getElementById('s8-prev').addEventListener('click', function () {
