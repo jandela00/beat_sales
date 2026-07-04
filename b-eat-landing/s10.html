@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S10 Patent Grant Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body { font-family: 'Pretendard', sans-serif; background: #ffffff; }
+
+  .s10 { width: 100%; background: #ffffff; }
+
+  .s10 .inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(40px, 5.7vw, 80px) 0 clamp(28px, 3.6vw, 50px);
+  }
+
+  /* Title */
+  .s10 .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 1.6vw, 20px);
+    text-align: center;
+  }
+
+  .s10 .title .label {
+    border: 1px solid #5298dd;
+    border-radius: 32px;
+    padding: 10px 20px;
+    color: #5298dd;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 14px);
+    text-transform: uppercase;
+  }
+
+  .s10 .title h2 {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(24px, 3.2vw, 48px);
+    line-height: 1;
+  }
+
+  .s10 .title h2 .accent {
+    color: #5298dd;
+  }
+
+  .s10 .title .sub {
+    color: #4a4a6a;
+    font-weight: 400;
+    font-size: clamp(13px, 1.1vw, 20px);
+  }
+
+  /* Content row */
+  .s10 .content-row {
+    margin-top: clamp(40px, 6.4vw, 90px);
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(28px, 5.5vw, 76px);
+    flex-wrap: wrap;
+  }
+
+  .s10 .photo {
+    flex: 1 1 360px;
+    max-width: 650px;
+    width: 100%;
+    aspect-ratio: 650 / 500;
+    overflow: hidden;
+  }
+
+  .s10 .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .s10 .timeline-col {
+    flex: 0 1 297px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2.3vw, 32px);
+    min-width: 220px;
+  }
+
+  .s10 .timeline-col.narrow {
+    flex-basis: 246px;
+  }
+
+  .s10 .year-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .s10 .year-block h3 {
+    color: #5298dd;
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1;
+  }
+
+  .s10 .year-block ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 24px;
+  }
+
+  .s10 .year-block li {
+    color: #4a4a6a;
+    font-weight: 500;
+    font-size: clamp(12px, 1vw, 16px);
+    line-height: 1;
+  }
+
+  @media (max-width: 900px) {
+    .s10 .content-row { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<section class="s10">
+  <div class="inner">
+    <div class="title">
+      <span class="label">Patent grant</span>
+      <h2>특허로 쌓아온 <span class="accent">기술 경쟁력</span></h2>
+      <p class="sub">2016년부터 현재까지 무인 커피 제조ㆍ운영 자동화 기술을 지속적으로 고도화</p>
+    </div>
+
+    <div class="content-row">
+      <div class="photo">
+        <img src="assets/s10-patent-wall.png" alt="b:eat 특허 인증서 전시" />
+      </div>
+
+      <div class="timeline-col">
+        <div class="year-block">
+          <h3>2017</h3>
+          <ul>
+            <li>커피 제조 장치 및 동작 방법 관리자</li>
+            <li>단말 이벤트 통지 기술</li>
+          </ul>
+        </div>
+        <div class="year-block">
+          <h3>2018</h3>
+          <ul>
+            <li>무인 커피 음료 제조 머신 주문 처리 장치</li>
+          </ul>
+        </div>
+        <div class="year-block">
+          <h3>2019</h3>
+          <ul>
+            <li>커피 제조 머신 기반 주문 처리 기술</li>
+          </ul>
+        </div>
+        <div class="year-block">
+          <h3>2021</h3>
+          <ul>
+            <li>날씨ㆍ기상 데이터 기반 커피 메뉴 추천 기술</li>
+          </ul>
+        </div>
+        <div class="year-block">
+          <h3>2020</h3>
+          <ul>
+            <li>컵 디스펜서</li>
+            <li>오류 발생 통보 자동 커피</li>
+            <li>제조 장치 제스처 기반 터치스크린 주문 기술</li>
+          </ul>
+        </div>
+        <div class="year-block">
+          <h3>2023</h3>
+          <ul>
+            <li>무인 매장 출입 고객 모니터링 기술</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-col narrow">
+        <div class="year-block">
+          <h3>2024</h3>
+          <ul>
+            <li>무인 매장 운영 정보 생성</li>
+            <li>정량 제조 자동 캘리브레이션</li>
+            <li>로봇 상태 기반 인터랙션</li>
+            <li>카드 결제 자동 부분 취소</li>
+            <li>병렬 제조 로직</li>
+            <li>음료 첨가물 디스펜서</li>
+            <li>자재 사용량ㆍ수요 예측 발주</li>
+            <li>기후ㆍ취향 기반 개인화 제조</li>
+          </ul>
+        </div>
+        <div class="year-block">
+          <h3>2025</h3>
+          <ul>
+            <li>전국 총 330대 누적 설치</li>
+            <li>고속도로 휴게소 40여대 운영 중</li>
+            <li>전국 주요 기업, 아파트, 로드샵 운영</li>
+          </ul>
+        </div>
+        <div class="year-block">
+          <h3>2026</h3>
+          <ul>
+            <li>일본 수출 확정 (7월)</li>
+            <li>글로벌 시장 (미국 등) 진출 협의 중</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
