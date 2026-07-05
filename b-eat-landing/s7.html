@@ -9,6 +9,27 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 100%; overflow-x: hidden; }
+
+  /* ===== Scroll reveal ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   body { font-family: 'Pretendard', sans-serif; background: #ffffff; }
 
   .s7 { width: 100%; background: #ffffff; padding-bottom: clamp(40px, 5.7vw, 80px); }
@@ -148,7 +169,7 @@
 
   .s7 .card .default-text .ko {
     color: #ffffff;
-    font-weight: 800;
+    font-weight: 700;
     font-size: clamp(20px, 2vw, 32px);
     line-height: 1.25;
   }
@@ -188,7 +209,7 @@
 
   .s7 .card .hover-text .ko {
     color: #ffffff;
-    font-weight: 800;
+    font-weight: 700;
     font-size: clamp(20px, 2vw, 32px);
     line-height: 1.25;
   }
@@ -257,7 +278,7 @@
 <body>
 
 <section class="s7">
-  <div class="title-wrap">
+  <div class="title-wrap reveal">
     <div class="title">
       <span class="label">Commercial area</span>
       <h2>
@@ -271,7 +292,7 @@
     </div>
   </div>
 
-  <div class="carousel" id="s7-carousel">
+  <div class="carousel reveal" id="s7-carousel">
     <div class="carousel-track">
 
       <div class="card">
@@ -480,6 +501,25 @@
         e.stopPropagation();
       }
     }, true);
+  })();
+</script>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in-view'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function (el) { observer.observe(el); });
   })();
 </script>
 

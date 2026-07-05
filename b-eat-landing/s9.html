@@ -9,6 +9,27 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 100%; overflow-x: hidden; }
+
+  /* ===== Scroll reveal ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   body { font-family: 'Pretendard', sans-serif; }
 
   .s9 {
@@ -225,7 +246,7 @@
 <body>
 
 <section class="s9">
-  <div class="title-wrap">
+  <div class="title-wrap reveal">
     <div class="title">
       <span class="label">Beverage Quality</span>
       <h2>고급 원두 + 시즌 신메뉴</h2>
@@ -236,7 +257,7 @@
     </div>
   </div>
 
-  <div class="beans-row">
+  <div class="beans-row reveal">
     <div class="beans-list">
 
       <div class="blend">
@@ -313,7 +334,7 @@
     </div>
   </div>
 
-  <div class="carousel" id="s9-carousel">
+  <div class="carousel reveal" id="s9-carousel">
     <div class="carousel-track">
       <div class="menu-card"><img src="assets/s9-menu1.png" alt="납작복숭아 망고 아이스티" /></div>
       <div class="menu-card"><img src="assets/s9-menu2.jpg" alt="벚꽃 캐모마일 티" /></div>
@@ -367,6 +388,25 @@
       isDown = false;
       carousel.classList.remove('dragging');
     });
+  })();
+</script>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in-view'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function (el) { observer.observe(el); });
   })();
 </script>
 

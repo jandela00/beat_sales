@@ -9,6 +9,25 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 100%; overflow-x: hidden; }
+  /* ===== Scroll reveal ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
   body { font-family: 'Pretendard', sans-serif; }
 
   .s11 {
@@ -115,7 +134,7 @@
 <body>
 
 <section class="s11">
-  <div class="inner">
+  <div class="inner reveal">
     <div class="title">
       <span class="label">Marketing support</span>
       <h2>매장의 매출 증진을 위한 다양한 <span class="accent">마케팅 지원</span></h2>
@@ -137,6 +156,26 @@
     </div>
   </div>
 </section>
+
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in-view'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function (el) { observer.observe(el); });
+  })();
+</script>
 
 </body>
 </html>
