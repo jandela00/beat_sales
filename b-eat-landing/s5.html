@@ -119,10 +119,10 @@
   .s5 .panel {
     display: none;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: clamp(24px, 3vw, 60px);
     flex-wrap: wrap;
-    padding: clamp(24px, 3vw, 48px);
+    padding: clamp(24px, 3vw, 48px) clamp(16px, 2.9vw, 40px) clamp(24px, 3vw, 48px) clamp(20px, 4.3vw, 60px);
     min-height: 498px;
   }
 
@@ -162,7 +162,7 @@
 
   .s5 .panel .visual {
     flex: 1 1 320px;
-    max-width: 560px;
+    max-width: 644px;
   }
 
   .s5 .panel .visual img {
@@ -175,7 +175,7 @@
     .s5 .solution { flex-direction: column; }
     .s5 .tabs { flex-direction: row; max-width: none; }
     .s5 .tab { height: 48px; }
-    .s5 .panel { flex-direction: column; text-align: center; }
+    .s5 .panel { flex-direction: column; justify-content: center; text-align: center; }
     .s5 .panel .text .sub { align-items: center; }
   }
 </style>
