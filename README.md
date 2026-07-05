@@ -9,7 +9,7 @@ b-eat-landing/
 ├── index.html            # 전체 섹션을 하나로 합친 랜딩페이지 (실제 배포용)
 ├── s0.html                # S0  히어로
 ├── s1.html                # S1  프로모션 배너
-├── s2.html                # S2  기대수익 (파이차트 + 매출표)
+├── s2.html                # S2  기대수익 (인터랙티브 SVG 파이차트 + 매출표)
 ├── s3.html                # S3  Since 2016 연혁 타임라인
 ├── s4.html                # S4  Key Point 8종 카드
 ├── s5.html                # S5  AI 매장 운영 솔루션 (탭)
@@ -30,13 +30,19 @@ b-eat-landing/
 - [x] S0 ~ S12, footer 전 섹션 퍼블리싱 완료
 - [x] 전체 섹션을 `index.html` 하나로 통합
 - [x] 네비게이션 메뉴 앵커 연결 (섹션 이동 4개 + 외부 링크 2개, 새 창)
-- [x] 스크롤 시 콘텐츠가 부드럽게 올라오는 리빌(reveal) 인터랙션 적용
+- [x] 스크롤 시 콘텐츠가 부드럽게 올라오는 fade-in 인터랙션 적용 (`IntersectionObserver`, `prefers-reduced-motion` 대응)
 - [x] PC 기준 최소 1400px, 모바일은 반응형(가로 스크롤 없음)
+- [x] S2 기대수익 파이차트를 이미지 대신 SVG로 코딩, hover 시 슬라이스/범례 강조 및 중앙 라벨 전환 인터랙션 적용
 
 ## 반응형 규칙
 
 - 콘텐츠는 `max-width: 1400px`로 중앙 정렬되며, 그보다 넓은 화면에서는 여백이 늘어나고 좁은 화면에서는 뷰포트 폭에 맞춰 반응형으로 줄어듭니다.
 - 모든 페이지에서 가로 스크롤이 발생하지 않도록 `overflow-x: hidden`을 적용했습니다.
+
+## 인터랙션
+
+- **스크롤 fade-in**: 각 섹션의 콘텐츠 wrapper에 `.fade-in` 클래스를 부여하고 `IntersectionObserver`(threshold 0.1)로 뷰포트 진입을 감지해 `visible` 클래스를 추가합니다 (`opacity: 0 → 1`, `translateY(40px) → 0`, 한 번만 재생). `prefers-reduced-motion: reduce` 환경에서는 애니메이션 없이 즉시 표시됩니다.
+- **S2 파이차트**: `stroke-dasharray` 기반 SVG 도넛 차트로, 슬라이스 또는 범례에 마우스를 올리면 해당 조각이 강조되고 중앙 텍스트가 실시간으로 전환됩니다. 마우스 좌표 → 중심 기준 각도 계산으로 hover 대상을 판별합니다(SVG dasharray는 마우스 히트테스트를 반영하지 않는 브라우저 특성 때문).
 
 ## 출처
 
