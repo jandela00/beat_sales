@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>b:eat — S12 Purchase Models Section</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; overflow-x: hidden; }
+  body { font-family: 'Pretendard', sans-serif; background: #ffffff; }
+
+  .s12 { width: 100%; background: #ffffff; }
+
+  .s12 .inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(40px, 5.7vw, 80px) 0 clamp(55px, 7.9vw, 110px);
+  }
+
+  /* Main title */
+  .s12 .main-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 1.6vw, 20px);
+    text-align: center;
+  }
+
+  .s12 .main-title .label {
+    border: 1px solid #5298dd;
+    border-radius: 32px;
+    padding: 10px 20px;
+    color: #5298dd;
+    font-weight: 500;
+    font-size: clamp(11px, 0.9vw, 14px);
+    text-transform: uppercase;
+  }
+
+  .s12 .main-title h2 {
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: clamp(22px, 3.2vw, 48px);
+    line-height: 1.25;
+  }
+
+  .s12 .main-title h2 .accent {
+    color: #5298dd;
+  }
+
+  /* Group (Buy Type / Partnership Type) */
+  .s12 .group {
+    margin-top: clamp(30px, 4.3vw, 60px);
+  }
+
+  .s12 .group-title {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.4vw, 20px);
+  }
+
+  .s12 .group-title h3 {
+    font-weight: 800;
+    font-size: clamp(18px, 2.3vw, 32px);
+    color: #1a1a2e;
+  }
+
+  .s12 .group-title h3 .accent {
+    color: #5298dd;
+  }
+
+  .s12 .group-title p {
+    color: #4a4a6a;
+    font-weight: 400;
+    font-size: clamp(13px, 1.1vw, 20px);
+  }
+
+  .s12 .tables-row {
+    margin-top: clamp(18px, 2.3vw, 32px);
+    display: flex;
+    gap: clamp(12px, 1.4vw, 20px);
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .s12 .table-card {
+    flex: 1 1 460px;
+    max-width: 690px;
+    border: 1px solid #e5eaf0;
+  }
+
+  .s12 table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: clamp(12px, 0.95vw, 16px);
+  }
+
+  .s12 th,
+  .s12 td {
+    padding: 12px 10px;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .s12 thead th {
+    height: 50px;
+    background: #edf5ff;
+    color: #5298dd;
+    font-weight: 700;
+  }
+
+  .s12 thead th:first-child {
+    border-right: 1px solid #e5eaf0;
+  }
+
+  .s12 tbody td {
+    border-bottom: 1px solid #e5eaf0;
+    color: #4a4a6a;
+    font-weight: 500;
+  }
+
+  .s12 tbody td.label {
+    background: #f8f8f8;
+    color: #1a1a2e;
+  }
+
+  .s12 tbody td.value {
+    border-right: 1px solid #e5eaf0;
+  }
+
+  .s12 tbody td.accent {
+    color: #5298dd;
+    font-weight: 700;
+  }
+
+  .s12 tbody tr.total td {
+    background: #4a4a6a;
+    color: #ffffff;
+    font-weight: 500;
+    border-bottom: none;
+  }
+
+  /* Right-side text block (Partnership) */
+  .s12 .flex-row {
+    margin-top: clamp(18px, 2.3vw, 32px);
+    display: flex;
+    gap: clamp(20px, 4vw, 65px);
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .s12 .flex-row .table-card {
+    flex: 1 1 460px;
+  }
+
+  .s12 .notes {
+    flex: 1 1 320px;
+    max-width: 375px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .s12 .notes .note-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .s12 .notes h4 {
+    font-weight: 700;
+    font-size: clamp(15px, 1.4vw, 20px);
+    color: #4a4a6a;
+  }
+
+  .s12 .notes p {
+    font-weight: 500;
+    font-size: clamp(12px, 1.1vw, 16px);
+    color: #4a4a6a;
+    line-height: 1.4;
+  }
+
+  .s12 .notes ul {
+    padding-left: 21px;
+    margin-top: -2px;
+  }
+
+  .s12 .notes li {
+    font-weight: 500;
+    font-size: clamp(11px, 1vw, 14px);
+    color: #4a4a6a;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 900px) {
+    .s12 .tables-row,
+    .s12 .flex-row { flex-direction: column; }
+    .s12 .table-card { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<section class="s12">
+  <div class="inner">
+    <div class="main-title">
+      <span class="label">Purchase models</span>
+      <h2>투자 유형에 맞는 <span class="accent">최적의 조건</span> 선택 도입 가능</h2>
+    </div>
+
+    <!-- Buy Type -->
+    <div class="group">
+      <div class="group-title">
+        <h3><span class="accent">Buy Type.</span> 로봇 구매 유형</h3>
+        <p>투자자가 직업 운영을 목적으로 구매를 원하실 경우, 1명의 인건비로 3명의 퍼포먼스 가능</p>
+      </div>
+
+      <div class="tables-row">
+        <div class="table-card">
+          <table>
+            <colgroup>
+              <col style="width: 36.23%;" />
+              <col style="width: 28.99%;" />
+              <col style="width: 34.78%;" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th colspan="2">초기 투자 비용</th>
+                <th>비고</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label">로봇 선급 비용</td>
+                <td class="value">₩ 34,500,000</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="label">설치비</td>
+                <td class="value">₩ 2,900,000</td>
+                <td class="accent">선착순 면제</td>
+              </tr>
+              <tr>
+                <td class="label">키오스크</td>
+                <td class="value">₩ 3,500,000</td>
+                <td class="accent">선착순 면제</td>
+              </tr>
+              <tr>
+                <td class="label">교육비</td>
+                <td class="value">₩ 800,000</td>
+                <td class="accent">선착순 면제</td>
+              </tr>
+              <tr>
+                <td class="label">초도 물품</td>
+                <td class="value">₩ 1,000,000</td>
+                <td class="accent">선착순 면제</td>
+              </tr>
+              <tr>
+                <td class="label">설치환경 조성</td>
+                <td class="value">선택 사항</td>
+                <td>급배수 전기 설비</td>
+              </tr>
+              <tr class="total">
+                <td>합계</td>
+                <td>₩ 38,000,000</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-card">
+          <table>
+            <colgroup>
+              <col style="width: 36.23%;" />
+              <col style="width: 28.99%;" />
+              <col style="width: 34.78%;" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th colspan="2">월 소요 비용</th>
+                <th>비고</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label">로봇 비용</td>
+                <td class="value">₩ 1,593,602</td>
+                <td>60개월</td>
+              </tr>
+              <tr>
+                <td class="label">i-MAD (AI 매장 운영) 비용</td>
+                <td class="value">₩ 390,000</td>
+                <td>관제 서비스, 원격 관리,<br />AI 자동 물류, AI 마케팅, POS 등</td>
+              </tr>
+              <tr>
+                <td class="label">정기 점검비</td>
+                <td class="value">₩ 120,000</td>
+                <td class="accent">선착순 면제 (1년 / 120만원)</td>
+              </tr>
+              <tr class="total">
+                <td>합계</td>
+                <td>₩ 1,983,602</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partnership Type -->
+    <div class="group">
+      <div class="group-title">
+        <h3><span class="accent">Partnership Type.</span> 파트너십 유형</h3>
+        <p>기업, 관공서 등 파트너십 매장에 적합한 최적의 도입 조건</p>
+      </div>
+
+      <div class="flex-row">
+        <div class="table-card">
+          <table>
+            <colgroup>
+              <col style="width: 36.23%;" />
+              <col style="width: 28.99%;" />
+              <col style="width: 34.78%;" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th colspan="2">항목</th>
+                <th>비고</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label">로봇 비용, 키오스크, 시공비</td>
+                <td class="value accent">면제</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="label">원부자재</td>
+                <td class="value">사용량 비례 정산</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="label">i-MAD (AI 매장 운영) 비용</td>
+                <td class="value accent">면제</td>
+                <td>정가 390,000</td>
+              </tr>
+              <tr>
+                <td class="label">설치비</td>
+                <td class="value">₩ 10,000,000</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="label">월 운영비</td>
+                <td class="value">₩ 1,120,000</td>
+                <td>유지보수 (주 5~7일), 정기점검</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="notes">
+          <div class="note-block">
+            <h4>물류 산정기준 (월 24일 운영 기준)</h4>
+            <p>예) 아메리카노 기준 : 일 평균 250잔 기준, 약 450만원 수준</p>
+            <ul>
+              <li>주문 음료 구성 및 레시피에 따라 변동될 수 있습니다.</li>
+            </ul>
+          </div>
+          <div class="note-block">
+            <h4>기대 매출 예시</h4>
+            <p>월 300만원 매출 (수익) 발생</p>
+            <p>(日 300잔 판매 x 잔당 500원 x 月 근무일수 20일 산정)</p>
+            <p>운영비 (월 112만원) 감안 시, 추가 수익 발생</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
