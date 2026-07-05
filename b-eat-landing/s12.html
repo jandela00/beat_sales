@@ -161,6 +161,12 @@
     border-bottom: none;
   }
 
+  /* Last row's own border-bottom would double up with .table-card's
+     border, so drop it regardless of whether the row is a .total row. */
+  .s12 tbody tr:last-child td {
+    border-bottom: none;
+  }
+
   /* Right-side text block (Partnership) */
   .s12 .flex-row {
     margin-top: clamp(18px, 2.3vw, 32px);

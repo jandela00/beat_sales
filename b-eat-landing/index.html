@@ -1877,6 +1877,12 @@
     border-bottom: none;
   }
 
+  /* Last row's own border-bottom would double up with .table-card's
+     border, so drop it regardless of whether the row is a .total row. */
+  .s12 tbody tr:last-child td {
+    border-bottom: none;
+  }
+
   .s12 .flex-row {
     margin-top: clamp(18px, 2.3vw, 32px);
     display: flex;
@@ -2029,8 +2035,8 @@
         </div>
       </div>
       <div class="cta-group">
-        <a href="#" class="cta-primary">지금 창업 문의하기 →</a>
-        <a href="#" class="cta-secondary">브랜드 소개 보기 ↓</a>
+        <a href="https://beatcorp.imweb.me/Request" target="_blank" rel="noopener" class="cta-primary">지금 창업 문의하기 →</a>
+        <a href="#s3" class="cta-secondary">브랜드 소개 보기 ↓</a>
       </div>
     </div>
   </div>
