@@ -12,20 +12,20 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'Pretendard', sans-serif; background: #ffffff; }
 
-  /* ===== Scroll fade-in ===== */
-  .fade-in {
+  /* ===== Scroll reveal ===== */
+  .reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity .65s ease, transform .65s ease;
+    transition: opacity 0.65s ease, transform 0.65s ease;
   }
 
-  .fade-in.visible {
+  .reveal.in-view {
     opacity: 1;
-    transform: none;
+    transform: translateY(0);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .fade-in {
+    .reveal {
       opacity: 1;
       transform: none;
       transition: none;
@@ -340,7 +340,7 @@
     gap: clamp(10px, 1.6vw, 20px);
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 50px;
+    margin: 0 auto clamp(40px, 6vw, 72px);
   }
 
   .s2 .title .label {
@@ -378,77 +378,12 @@
   .s2 .chart {
     flex: 1 1 320px;
     max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
   }
 
-  .s2 .chart .piechart {
+  .s2 .chart img {
     width: 100%;
-    max-width: 440px;
     height: auto;
-  }
-
-  .s2 .chart .slice {
-    cursor: pointer;
-    transition: stroke-width 0.25s ease, opacity 0.25s ease;
-  }
-
-  .s2 .chart .piechart.hovering .slice:not(.active) {
-    opacity: 0.45;
-  }
-
-  .s2 .chart .slice.active {
-    stroke-width: 68;
-  }
-
-  .s2 .chart .chart-pct {
-    font-family: 'Pretendard', sans-serif;
-    font-weight: 800;
-    font-size: 22px;
-    fill: #5298dd;
-  }
-
-  .s2 .chart .chart-label {
-    font-family: 'Pretendard', sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-    fill: #6b7280;
-  }
-
-  .s2 .chart-legend {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    max-width: 340px;
-  }
-
-  .s2 .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 4px 8px;
-    border-radius: 8px;
-    color: #1a1a2e;
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-
-  .s2 .legend-item:hover,
-  .s2 .legend-item.active {
-    background: #edf5ff;
-  }
-
-  .s2 .legend-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: inline-block;
+    display: block;
   }
 
   .s2 .table-wrap {
@@ -1948,8 +1883,6 @@
     border-bottom: none;
   }
 
-  /* Last row's own border-bottom would double up with .table-card's
-     border, so drop it regardless of whether the row is a .total row. */
   .s12 tbody tr:last-child td {
     border-bottom: none;
   }
@@ -2115,7 +2048,7 @@
 
 <!-- S1 : Promotion -->
 <section class="s1">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="text">
       <span class="label">10TH ANNIVERSARY PROMOTION</span>
       <p class="headline">선착순 1,000만원 도입비 지원</p>
@@ -2133,7 +2066,7 @@
 
 <!-- S2 : Expected Return -->
 <section class="s2">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="title">
       <span class="label">expected return</span>
       <h2>인건비 부담은 최소화,<br />운영 효율은 극대화</h2>
@@ -2142,21 +2075,7 @@
 
     <div class="content-row">
       <div class="chart">
-        <svg class="piechart" viewBox="20 20 240 240" role="img" aria-label="수익 구조 원형 그래프: 수익 53%, 원부자재 33%, 부가세 10%, i-MAD 이용료 4%">
-          <circle class="slice" data-key="profit" data-pct="53%" data-label="수익" r="80" cx="140" cy="140" fill="transparent" stroke="#5298dd" stroke-width="60" stroke-dasharray="266.408 236.247" stroke-dashoffset="0" transform="rotate(-90 140 140)" />
-          <circle class="slice" data-key="material" data-pct="33%" data-label="원부자재" r="80" cx="140" cy="140" fill="transparent" stroke="#3CC3DF" stroke-width="60" stroke-dasharray="165.876 336.779" stroke-dashoffset="-266.408" transform="rotate(-90 140 140)" />
-          <circle class="slice" data-key="vat" data-pct="10%" data-label="부가세" r="80" cx="140" cy="140" fill="transparent" stroke="#8888" stroke-width="60" stroke-dasharray="50.265 452.39" stroke-dashoffset="-432.284" transform="rotate(-90 140 140)" />
-          <circle class="slice" data-key="imad" data-pct="4%" data-label="i-MAD" r="80" cx="140" cy="140" fill="transparent" stroke="#EBEDF5" stroke-width="60" stroke-dasharray="20.106 482.549" stroke-dashoffset="-482.549" transform="rotate(-90 140 140)" />
-          <circle r="56" cx="140" cy="140" fill="#ffffff" />
-          <text class="chart-pct" x="140" y="142" text-anchor="middle">53%</text>
-          <text class="chart-label" x="140" y="160" text-anchor="middle">수익</text>
-        </svg>
-        <div class="chart-legend">
-          <div class="legend-item" data-key="profit"><span class="legend-dot" style="background:#5298dd"></span>수익 53%</div>
-          <div class="legend-item" data-key="material"><span class="legend-dot" style="background:#3CC3DF"></span>원부자재 33%</div>
-          <div class="legend-item" data-key="vat"><span class="legend-dot" style="background:#8888"></span>부가세 10%</div>
-          <div class="legend-item" data-key="imad"><span class="legend-dot" style="background:#EBEDF5"></span>i-MAD 이용료(AI 매장운영 OS) 4%</div>
-        </div>
+        <img src="assets/s2-piechart.png" alt="수익 구조 원형 그래프: 수익 53%, 원부자재 33%, i-MAD 이용료 4%, 부가세 4%" />
       </div>
 
       <div class="table-wrap">
@@ -2231,7 +2150,7 @@
 
 <!-- S3 : Since 2016 -->
 <section class="s3" id="s3">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="title">
       <span class="label">b;eat SINCE 2016</span>
       <h2>
@@ -2252,7 +2171,7 @@
 
 <!-- S4 : Key Point -->
 <section class="s4">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="title">
       <span class="label">Key point</span>
       <h2>
@@ -2362,7 +2281,7 @@
 
 <!-- S5 : AI Solution -->
 <section class="s5" id="s5">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="title">
       <span class="label">ai solution</span>
       <h2>
@@ -2430,7 +2349,7 @@
 
 <!-- S6 : Comparison -->
 <section class="s6">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="title">
       <span class="label">comparison</span>
       <h2>
@@ -2508,14 +2427,13 @@
         </tbody>
       </table>
       <div class="highlight-frame"></div>
-      </div>
     </div>
   </div>
 </section>
 
 <!-- S6-1 : Interview (YouTube) -->
 <section class="s6-1" id="s6-1">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="title">
       <span class="label">Interview</span>
       <h2>3 Track Client</h2>
@@ -2536,7 +2454,7 @@
 
 <!-- S7 : Commercial Area -->
 <section class="s7">
-  <div class="title-wrap fade-in">
+  <div class="title-wrap reveal">
     <div class="title">
       <span class="label">Commercial area</span>
       <h2>
@@ -2550,7 +2468,7 @@
     </div>
   </div>
 
-  <div class="carousel fade-in" id="s7-carousel">
+  <div class="carousel reveal" id="s7-carousel">
     <div class="carousel-track">
 
       <div class="card">
@@ -2703,7 +2621,7 @@
 
 <!-- S8 : Hybrid Concept -->
 <section class="s8">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="title">
       <span class="label">hybrid CONCEPT</span>
       <h2>
@@ -2748,7 +2666,7 @@
 
 <!-- S9 : Beverage Quality -->
 <section class="s9">
-  <div class="title-wrap fade-in">
+  <div class="title-wrap reveal">
     <div class="title">
       <span class="label">Beverage Quality</span>
       <h2>고급 원두 + 시즌 신메뉴</h2>
@@ -2759,14 +2677,14 @@
     </div>
   </div>
 
-  <div class="beans-row fade-in">
+  <div class="beans-row reveal">
     <div class="beans-list">
 
       <div class="blend">
         <div class="blend-info">
           <h3>시그니처 블렌드</h3>
           <div class="desc">
-            <p>밀크 초콜릿의 균형 잡힌 단맛과 기분 좋은 쓴맛,</p>
+            <p>밀크 초콜릿의 균형 잡힌 단맛และ 기분 좋은 쓴맛,</p>
             <p>풍부한 바디감으로 깊은 여운을 주는 커피</p>
           </div>
         </div>
@@ -2836,7 +2754,7 @@
     </div>
   </div>
 
-  <div class="carousel fade-in" id="s9-carousel">
+  <div class="carousel reveal" id="s9-carousel">
     <div class="carousel-track">
       <div class="menu-card"><img src="assets/s9-menu1.png" alt="납작복숭아 망고 아이스티" /></div>
       <div class="menu-card"><img src="assets/s9-menu2.jpg" alt="벚꽃 캐모마일 티" /></div>
@@ -2848,7 +2766,7 @@
 
 <!-- S10 : Patent Grant -->
 <section class="s10">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="title">
       <span class="label">Patent grant</span>
       <h2>특허로 쌓아온 <span class="accent">기술 경쟁력</span></h2>
@@ -2938,7 +2856,7 @@
 
 <!-- S11 : Marketing Support -->
 <section class="s11">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="title">
       <span class="label">Marketing support</span>
       <h2>매장의 매출 증진을 위한 다양한 <span class="accent">마케팅 지원</span></h2>
@@ -2963,7 +2881,7 @@
 
 <!-- S12 : Purchase Models -->
 <section class="s12" id="s12">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="main-title">
       <span class="label">Purchase models</span>
       <h2>투자 유형에 맞는 <span class="accent">최적의 조건</span> 선택 도입 가능</h2>
@@ -3141,7 +3059,7 @@
 
 <!-- Footer -->
 <footer class="footer">
-  <div class="inner fade-in">
+  <div class="inner reveal">
     <div class="company">
       <h2>주식회사 비트코퍼레이션</h2>
       <div class="details">
@@ -3296,96 +3214,24 @@
   })();
 </script>
 
+<!-- 수정된 스크롤 인터랙션 스크립트 -->
 <script>
   (function () {
-    var els = document.querySelectorAll('.fade-in');
+    var els = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window)) {
-      els.forEach(function (el) { el.classList.add('visible'); });
+      els.forEach(function (el) { el.classList.add('in-view'); });
       return;
     }
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          // 기존 'visible' 대신 CSS에 맞게 'in-view' 클래스를 추가하도록 수정 완료
+          entry.target.classList.add('in-view');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
     els.forEach(function (el) { observer.observe(el); });
-  })();
-</script>
-
-<script>
-  (function () {
-    var svg = document.querySelector('.s2 .piechart');
-    if (!svg) return;
-    var slices = svg.querySelectorAll('.slice');
-    var legendItems = document.querySelectorAll('.s2 .legend-item');
-    var pctText = svg.querySelector('.chart-pct');
-    var labelText = svg.querySelector('.chart-label');
-    var defaultPct = pctText.textContent;
-    var defaultLabel = labelText.textContent;
-    var info = {};
-    slices.forEach(function (s) {
-      info[s.dataset.key] = { pct: s.dataset.pct, label: s.dataset.label };
-    });
-
-    function setActive(key) {
-      slices.forEach(function (s) { s.classList.toggle('active', s.dataset.key === key); });
-      legendItems.forEach(function (l) { l.classList.toggle('active', l.dataset.key === key); });
-      svg.classList.toggle('hovering', !!key);
-      if (key && info[key]) {
-        pctText.textContent = info[key].pct;
-        labelText.textContent = info[key].label;
-      } else {
-        pctText.textContent = defaultPct;
-        labelText.textContent = defaultLabel;
-      }
-    }
-
-    // Build cumulative [startPct, endPct, key] ranges in the same clockwise
-    // order the slices are drawn (matches each circle's dash offset).
-    var ranges = [];
-    var cum = 0;
-    slices.forEach(function (s) {
-      var pct = parseFloat(s.dataset.pct);
-      ranges.push({ start: cum, end: cum + pct, key: s.dataset.key });
-      cum += pct;
-    });
-
-    // SVG circles hit-test their full ring regardless of stroke-dasharray,
-    // so per-circle mouseenter/mouseleave picks up whichever circle is
-    // topmost in DOM order instead of the one actually under the cursor.
-    // Detect the hovered slice by angle from the chart center instead.
-    var CX = 140, CY = 140, OUTER_R = 110, INNER_R = 50;
-
-    function keyAtPoint(clientX, clientY) {
-      var rect = svg.getBoundingClientRect();
-      var vb = svg.viewBox.baseVal;
-      var ux = vb.x + (clientX - rect.left) / rect.width * vb.width;
-      var uy = vb.y + (clientY - rect.top) / rect.height * vb.height;
-      var dx = ux - CX;
-      var dy = uy - CY;
-      var dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < INNER_R - 6 || dist > OUTER_R + 6) return null;
-      var deg = Math.atan2(dx, -dy) * 180 / Math.PI;
-      if (deg < 0) deg += 360;
-      var pct = deg / 360 * 100;
-      for (var i = 0; i < ranges.length; i++) {
-        if (pct >= ranges[i].start && pct < ranges[i].end) return ranges[i].key;
-      }
-      return null;
-    }
-
-    svg.addEventListener('mousemove', function (e) {
-      setActive(keyAtPoint(e.clientX, e.clientY));
-    });
-    svg.addEventListener('mouseleave', function () { setActive(null); });
-
-    legendItems.forEach(function (l) {
-      l.addEventListener('mouseenter', function () { setActive(l.dataset.key); });
-      l.addEventListener('mouseleave', function () { setActive(null); });
-    });
   })();
 </script>
 
