@@ -688,14 +688,219 @@
     line-height: 1.5;
   }
 
-  .s3 .timeline {
-    margin-top: clamp(8px, 1vw, 14px);
+  .s3 .growth-chart {
+    position: relative;
+    width: 100%;
+    max-width: 1136px;
+    aspect-ratio: 1136 / 704;
+    margin: clamp(8px, 1vw, 14px) auto 0;
   }
 
-  .s3 .timeline img {
+  .s3 .growth-arrow {
+    position: absolute;
+    left: 11.18%;
+    top: 8.52%;
+    width: 77.68%;
+    height: 60.26%;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
+  }
+
+  .s3 .growth-chart.grow-arrow .growth-arrow {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  .s3 .chart-lines {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+  }
+
+  .s3 .chart-curve {
+    fill: none;
+  }
+
+  .s3 .chart-dot {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .s3 .growth-chart.draw .chart-dot {
+    opacity: 1;
+  }
+
+  .s3 .chart-robot {
+    position: absolute;
+    object-fit: cover;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .s3 .growth-chart.show-robots .chart-robot {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .s3 .chart-robot-1 { left: 0%; top: 53.98%; width: 11.27%; height: 19.74%; box-shadow: none; }
+  .s3 .chart-robot-2 { left: 27.11%; top: 30.26%; width: 19.37%; height: 33.66%; transition-delay: 0.12s; box-shadow: none; }
+  .s3 .chart-robot-3 { left: 54.23%; top: 0%; width: 22.89%; height: 41.76%; transition-delay: 0.24s; }
+
+  .s3 .chart-badge {
+    position: absolute;
+    z-index: 2;
+    background: #5298dd;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 18px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .s3 .growth-chart.show-robots .chart-badge {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .s3 .badge-1 { left: 2.38%; top: 77.98%; }
+  .s3 .badge-2 { left: 33.63%; top: 64.91%; transition-delay: 0.12s; }
+  .s3 .badge-3 { left: 62.41%; top: 45.45%; transition-delay: 0.24s; }
+
+  .s3 .chart-year {
+    position: absolute;
+    color: #4a4a6a;
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+    top: 88.78%;
+  }
+
+  .s3 .label-2018 { left: 3.96%; }
+  .s3 .label-20194 { left: 36.84%; transform: translateX(-50%); }
+  .s3 .label-20212 { left: 65.81%; transform: translateX(-50%); }
+  .s3 .label-20254 { left: 93.53%; transform: translateX(-50%); }
+
+  .s3 .chart-milestone {
+    position: absolute;
+    z-index: 2;
+    transform: translateX(-50%);
+    color: #071f60;
+    font-weight: 700;
+    font-size: 20px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .s3 .growth-chart.count .chart-milestone {
+    opacity: 1;
+  }
+
+  .s3 .milestone-34 { left: 36.79%; top: 76.56%; }
+  .s3 .milestone-88 { left: 65.81%; top: 60.80%; }
+
+  .s3 .cumulative-circle {
+    position: absolute;
+    z-index: 2;
+    left: 87.32%;
+    top: 32.24%;
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    background: #071f60;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #ffffff;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .s3 .growth-chart.count .cumulative-circle {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .s3 .cumulative-circle .label {
+    font-weight: 500;
+    font-size: 20px;
+  }
+
+  .s3 .cumulative-circle .count {
+    font-weight: 700;
+    font-size: 36px;
+  }
+
+  .s3 .chart-legend {
+    position: absolute;
+    left: 3.08%;
+    top: 93.47%;
+    width: 93.75%;
+    height: 6.53%;
+    display: flex;
+  }
+
+  .s3 .chart-legend .seg {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .s3 .chart-legend .seg-1 { flex: 0 0 36.05%; background: #adadad; padding-left: 13.02%; }
+  .s3 .chart-legend .seg-2 { flex: 0 0 30.52%; background: #737373; justify-content: center; }
+  .s3 .chart-legend .seg-3 { flex: 0 0 31.46%; background: #071f60; justify-content: center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .s3 .growth-arrow,
+    .s3 .chart-dot,
+    .s3 .chart-robot,
+    .s3 .chart-badge,
+    .s3 .chart-milestone,
+    .s3 .cumulative-circle {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  .s3 .timeline-mobile {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    .s3 .growth-chart {
+      display: none;
+    }
+
+    .s3 .timeline-mobile {
+      display: block;
+      margin-top: clamp(8px, 1vw, 14px);
+    }
+
+    .s3 .timeline-mobile img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
   }
 
   /* ===== S4 : Key Point ===== */
@@ -2636,7 +2841,52 @@
       </p>
     </div>
 
-    <div class="timeline">
+    <div class="growth-chart" id="s3-growth-chart" role="img" aria-label="b:eat 로봇카페 도입 성장 타임라인: 2018년 1.0 출시부터 2025년 누적 330호점까지">
+      <svg class="growth-arrow" viewBox="0 0 882.42 424.211" preserveAspectRatio="none" fill="none" aria-hidden="true">
+        <path d="M864.01 130.92L882.42 0L749.99 21.42L772.74 43.27C737.72 90.24 480.04 425 0 407.96C0 407.96 422.57 528.41 845.82 113.46L864.01 130.93V130.92Z" fill="#6DA8DB" opacity="0.22" />
+      </svg>
+
+      <img class="chart-robot chart-robot-1" src="assets/s3-robot-1.png" alt="b:eat 1.0 로봇카페" />
+      <img class="chart-robot chart-robot-2" src="assets/s3-robot-2.png" alt="b:eat 2.0 로봇카페" />
+      <img class="chart-robot chart-robot-3" src="assets/s3-robot-3.png" alt="b:eat 3.0 로봇카페" />
+
+      <span class="chart-badge badge-1">1.0출시</span>
+      <span class="chart-badge badge-2">2.0출시</span>
+      <span class="chart-badge badge-3">3.0출시</span>
+
+      <svg class="chart-lines" viewBox="0 0 1136 704" preserveAspectRatio="none" fill="none" aria-hidden="true">
+        <line class="chart-axis" x1="35" y1="614" x2="1083" y2="614" stroke="#d1d1d1" stroke-width="2" />
+        <path class="chart-dash" d="M62 564V613" stroke="#d1d1d1" stroke-width="2" stroke-dasharray="2 2" />
+        <path class="chart-dash" d="M419 471V612" stroke="#d1d1d1" stroke-width="2" stroke-dasharray="2 2" />
+        <path class="chart-dash" d="M748 330V612" stroke="#d1d1d1" stroke-width="2" stroke-dasharray="2 2" />
+        <path class="chart-dash" d="M1063 330V612" stroke="#d1d1d1" stroke-width="2" stroke-dasharray="2 2" />
+        <path class="chart-curve" id="s3-curve-path" d="M63.6 616.2 L419.1 595.2 L748.1 483.2 L1064.1 300.7" stroke="#071f60" stroke-width="4" />
+        <circle class="chart-dot" cx="63" cy="614" r="6" fill="#071f60" />
+        <circle class="chart-dot" cx="419" cy="593" r="7" fill="#ffffff" stroke="#071f60" stroke-width="4" />
+        <circle class="chart-dot" cx="748" cy="481" r="7" fill="#ffffff" stroke="#071f60" stroke-width="4" />
+      </svg>
+
+      <span class="chart-year label-2018">2018</span>
+      <span class="chart-year label-20194">2019.4Q</span>
+      <span class="chart-year label-20212">2021.2Q</span>
+      <span class="chart-year label-20254">2025.4Q</span>
+
+      <span class="chart-milestone milestone-34"><span class="chart-count" data-target="34">0</span>호점</span>
+      <span class="chart-milestone milestone-88"><span class="chart-count" data-target="88">0</span>호점</span>
+
+      <div class="cumulative-circle">
+        <span class="label">누적 설치</span>
+        <span class="count"><span class="chart-count" data-target="330">0</span></span>
+      </div>
+
+      <div class="chart-legend">
+        <span class="seg seg-1">b;eat 1.0 launched</span>
+        <span class="seg seg-2">b;eat 2.0 판매</span>
+        <span class="seg seg-3">b;eat 3.0 판매</span>
+      </div>
+    </div>
+
+    <div class="timeline-mobile">
       <img src="assets/s3-timeline.png" alt="b:eat 로봇카페 도입 성장 타임라인: 2018년 1.0 출시부터 2025년 누적 330호점까지" />
     </div>
   </div>
@@ -3586,6 +3836,80 @@
     nav.querySelectorAll('.nav-links a').forEach(function (a) {
       a.addEventListener('click', function () { setOpen(false); });
     });
+  })();
+</script>
+
+<script>
+  // S3: growth chart sequence - curve draws in, robots fade in, counts tick
+  // up, then the background arrow grows up from the bottom.
+  (function () {
+    var chart = document.getElementById('s3-growth-chart');
+    if (!chart) return;
+
+    var curve = document.getElementById('s3-curve-path');
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function countUp(el, duration) {
+      var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+      if (reduceMotion) {
+        el.textContent = target;
+        return;
+      }
+      var start = null;
+      function tick(timestamp) {
+        if (start === null) start = timestamp;
+        var progress = Math.min((timestamp - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(target * eased);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function play() {
+      if (reduceMotion) {
+        chart.classList.add('draw', 'show-robots', 'count', 'grow-arrow');
+        chart.querySelectorAll('.chart-count').forEach(function (el) {
+          el.textContent = el.getAttribute('data-target');
+        });
+        return;
+      }
+
+      var len = curve.getTotalLength();
+      curve.style.strokeDasharray = len;
+      curve.style.strokeDashoffset = len;
+      curve.style.transition = 'stroke-dashoffset 1s ease';
+
+      requestAnimationFrame(function () {
+        chart.classList.add('draw');
+        curve.style.strokeDashoffset = 0;
+      });
+
+      setTimeout(function () { chart.classList.add('show-robots'); }, 700);
+
+      setTimeout(function () {
+        chart.classList.add('count');
+        chart.querySelectorAll('.chart-count').forEach(function (el) {
+          countUp(el, 900);
+        });
+      }, 1400);
+
+      setTimeout(function () { chart.classList.add('grow-arrow'); }, 2400);
+    }
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            play();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(chart);
+    } else {
+      play();
+    }
   })();
 </script>
 
