@@ -70,12 +70,46 @@
   }
 
   .s0 .nav {
+    height: clamp(64px, 6.5vw, 90px);
+    flex-shrink: 0;
+  }
+
+  .s0 .nav-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     row-gap: 12px;
-    height: clamp(64px, 6.5vw, 90px);
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 721px) {
+    .s0 .inner {
+      padding-top: clamp(64px, 6.5vw, 90px);
+    }
+
+    #s3, #s5, #s6-1, #s12 {
+      scroll-margin-top: clamp(64px, 6.5vw, 90px);
+    }
+
+    .s0 .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      width: 100%;
+      background: rgba(13, 13, 31, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .s0 .nav .logo-link {
+    display: inline-flex;
     flex-shrink: 0;
   }
 
@@ -295,7 +329,8 @@
     .s0 .scrim {
       background: linear-gradient(180deg, rgba(13, 13, 31, 0.45) 0%, rgba(13, 13, 31, 0.55) 40%, rgba(13, 13, 31, 0.92) 100%);
     }
-    .s0 .nav { position: relative; justify-content: space-between; text-align: left; }
+    .s0 .nav { position: relative; }
+    .s0 .nav-inner { justify-content: space-between; text-align: left; }
     .s0 .nav-toggle { display: flex; }
 
     .s0 .nav-toggle { position: relative; z-index: 41; }
@@ -2666,6 +2701,121 @@
       padding-right: 20px;
     }
   }
+
+  /* ===== Floating contact / scroll-to-top buttons ===== */
+  .floating-actions {
+    position: fixed;
+    right: clamp(16px, 3vw, 32px);
+    bottom: clamp(16px, 3vw, 32px);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  }
+
+  .floating-actions.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .floating-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Pretendard', sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .floating-btn:hover {
+    transform: translateY(-3px);
+  }
+
+  .floating-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+  }
+
+  .floating-contact {
+    width: 100px;
+    height: 100px;
+    background: #5298dd;
+    color: #ffffff;
+    box-shadow: 2px 6px 16px rgba(82, 152, 221, 0.45);
+  }
+
+  .floating-contact svg {
+    width: 26px;
+    height: 26px;
+    stroke: #ffffff;
+  }
+
+  .floating-contact .contact-text {
+    display: flex;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .floating-top {
+    width: 52px;
+    height: 52px;
+    background: #ffffff;
+    color: #4a4a6a;
+    box-shadow: 2px 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .floating-top svg {
+    stroke: #4a4a6a;
+  }
+
+  .floating-top span {
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 720px) {
+    .floating-actions {
+      right: 16px;
+      bottom: 16px;
+      gap: 10px;
+    }
+
+    .floating-contact { width: 68px; height: 68px; }
+    .floating-contact svg { display: none; }
+    .floating-contact .contact-text {
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.3;
+    }
+    .floating-top { width: 44px; height: 44px; }
+    .floating-top svg { width: 18px; height: 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-actions {
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      transform: none;
+    }
+
+    .floating-btn {
+      transition: none;
+    }
+  }
 </style>
 </head>
 <body>
@@ -2677,17 +2827,19 @@
 
   <div class="inner">
     <nav class="nav" id="s0-nav">
-      <img class="logo" src="assets/logo.png" alt="b:eat logo" />
-      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="s0-nav-links">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="nav-links" id="s0-nav-links">
-        <a href="#s3">b;eat 소개</a>
-        <a href="#s5">AI 매장 운영</a>
-        <a href="#s6-1">3 Track Client</a>
-        <a href="#s12">도입조건</a>
-        <a href="https://beatcorp.imweb.me/" target="_blank" rel="noopener">비트코퍼레이션</a>
-        <a href="https://beatcorp.imweb.me/Request" target="_blank" rel="noopener" class="nav-cta">상담 신청 → </a>
+      <div class="nav-inner">
+        <a class="logo-link" href="#"><img class="logo" src="assets/logo.png" alt="b:eat logo" /></a>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="s0-nav-links">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="s0-nav-links">
+          <a href="#s3">b;eat 소개</a>
+          <a href="#s5">AI 매장 운영</a>
+          <a href="#s6-1">3 Track Client</a>
+          <a href="#s12">도입조건</a>
+          <a href="https://beatcorp.imweb.me/" target="_blank" rel="noopener">비트코퍼레이션</a>
+          <a href="https://beatcorp.imweb.me/Request" target="_blank" rel="noopener" class="nav-cta">상담 신청 → </a>
+        </div>
       </div>
     </nav>
 
@@ -4235,6 +4387,42 @@
         observersByThreshold[threshold] = new IntersectionObserver(onIntersect, { threshold: threshold });
       }
       observersByThreshold[threshold].observe(el);
+    });
+  })();
+</script>
+
+<div class="floating-actions" id="floating-actions">
+  <a class="floating-btn floating-contact" href="https://beatcorp.imweb.me/Request" target="_blank" rel="noopener" aria-label="상담신청">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"></path><path d="M15 5l4 4"></path></svg>
+    <span class="contact-text"><span class="t1">상담</span><span class="t2">신청</span></span>
+  </a>
+  <button type="button" class="floating-btn floating-top" id="floating-top" aria-label="맨 위로">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    <span>TOP</span>
+  </button>
+</div>
+
+<script>
+  // Floating contact/top buttons: appear once the user scrolls to S2 or past it
+  (function () {
+    var wrap = document.getElementById('floating-actions');
+    var topBtn = document.getElementById('floating-top');
+    var trigger = document.querySelector('.s2');
+    if (!wrap || !trigger) return;
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          wrap.classList.toggle('visible', entry.boundingClientRect.top <= 0 || entry.isIntersecting);
+        });
+      }, { threshold: 0 });
+      observer.observe(trigger);
+    } else {
+      wrap.classList.add('visible');
+    }
+
+    topBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   })();
 </script>
