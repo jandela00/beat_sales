@@ -659,12 +659,36 @@
     flex-direction: column;
     gap: clamp(16px, 1.7vw, 24px);
     min-height: clamp(240px, 20vw, 280px);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    opacity: 0;
+    transform: translateY(70px);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.5s ease, transform 0.5s ease;
   }
 
   .s4 .card:hover {
     border-color: #5298dd;
     box-shadow: 2px 4px 16px rgba(82, 152, 221, 0.2);
+  }
+
+  .s4 .inner.in-view .card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .s4 .inner.in-view .card:nth-child(1) { transition-delay: 0s; }
+  .s4 .inner.in-view .card:nth-child(2) { transition-delay: 0.08s; }
+  .s4 .inner.in-view .card:nth-child(3) { transition-delay: 0.16s; }
+  .s4 .inner.in-view .card:nth-child(4) { transition-delay: 0.24s; }
+  .s4 .inner.in-view .card:nth-child(5) { transition-delay: 0.32s; }
+  .s4 .inner.in-view .card:nth-child(6) { transition-delay: 0.4s; }
+  .s4 .inner.in-view .card:nth-child(7) { transition-delay: 0.48s; }
+  .s4 .inner.in-view .card:nth-child(8) { transition-delay: 0.56s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .s4 .card {
+      opacity: 1;
+      transform: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
   }
 
   .s4 .card .num {
@@ -1327,6 +1351,18 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .s8 .photo img.s8-photo-incoming {
+    position: absolute;
+    inset: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .s8 .photo img {
+      transition: none;
+    }
   }
 
   .s8 .panel {
@@ -1439,6 +1475,71 @@
       position: static;
       justify-content: center;
       margin-top: 16px;
+    }
+  }
+
+  /* ===== S8 : Sequential fade-in (photo -> blue box -> text) ===== */
+  .s8 .inner {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .s8 .photo,
+  .s8 .controls,
+  .s8 .panel {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .s8 .panel > .main-text,
+  .s8 .panel > .sub-text {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .s8 .inner.in-view .photo,
+  .s8 .inner.in-view .controls {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+  }
+
+  .s8 .inner.in-view .panel {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+  }
+
+  .s8 .inner.in-view .panel > .main-text {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.85s;
+  }
+
+  .s8 .inner.in-view .panel > .sub-text:nth-of-type(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.05s;
+  }
+
+  .s8 .inner.in-view .panel > .sub-text:nth-of-type(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.25s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .s8 .photo,
+    .s8 .controls,
+    .s8 .panel,
+    .s8 .panel .main-text,
+    .s8 .panel .sub-text {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 
@@ -3359,20 +3460,56 @@
     var current = 1;
     var currentEl = document.getElementById('s8-current');
     var photoEl = document.getElementById('s8-photo');
+    var stage = photoEl.parentElement;
+    var animating = false;
 
-    function render() {
+    function go(direction) {
+      if (animating) return;
+      animating = true;
       currentEl.textContent = current;
-      photoEl.src = photos[current - 1];
+
+      var nextSrc = photos[current - 1];
+      var incoming = document.createElement('img');
+      incoming.className = 's8-photo-incoming';
+      incoming.alt = photoEl.alt;
+      incoming.src = nextSrc;
+      incoming.style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+      stage.appendChild(incoming);
+
+      // Force layout so the transform above is committed before animating.
+      void incoming.offsetWidth;
+
+      requestAnimationFrame(function () {
+        photoEl.style.transform = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
+        incoming.style.transform = 'translateX(0)';
+      });
+
+      incoming.addEventListener('transitionend', function handler() {
+        incoming.removeEventListener('transitionend', handler);
+        photoEl.src = nextSrc;
+        photoEl.style.transition = 'none';
+        photoEl.style.transform = 'none';
+        stage.removeChild(incoming);
+        // Re-enable the transition on the next frame, after the jump above applies.
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            photoEl.style.transition = '';
+            animating = false;
+          });
+        });
+      }, { once: true });
     }
 
     document.getElementById('s8-prev').addEventListener('click', function () {
+      if (animating) return;
       current = current === 1 ? total : current - 1;
-      render();
+      go('prev');
     });
 
     document.getElementById('s8-next').addEventListener('click', function () {
+      if (animating) return;
       current = current === total ? 1 : current + 1;
-      render();
+      go('next');
     });
   })();
 </script>
