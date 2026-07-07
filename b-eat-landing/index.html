@@ -54,7 +54,7 @@
   .s0 .scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(100deg, rgba(13, 13, 31, 0.75) 0%, rgba(13, 13, 31, 0.35) 45%, rgba(13, 13, 31, 0) 75%);
+    background: rgba(0, 0, 0, 0.6);
   }
 
   .s0 .inner {
@@ -326,9 +326,6 @@
     .s0 .title-block .text-group { flex: 1; justify-content: center; }
     .s0 .inner { padding-top: clamp(16px, 6vw, 32px); }
     .s0 .hri-bg { object-position: 70% center; }
-    .s0 .scrim {
-      background: linear-gradient(180deg, rgba(13, 13, 31, 0.45) 0%, rgba(13, 13, 31, 0.55) 40%, rgba(13, 13, 31, 0.92) 100%);
-    }
     .s0 .nav { position: relative; }
     .s0 .nav-inner { justify-content: space-between; text-align: left; }
     .s0 .nav-toggle { display: flex; }
@@ -2845,7 +2842,9 @@
 
 <!-- S0 : Hero -->
 <section class="s0">
-  <img class="hri-bg" src="assets/hri-2-photo.png" alt="" />
+  <video class="hri-bg" autoplay muted loop playsinline poster="assets/hri-2-photo.png">
+    <source src="assets/top_1.mp4" type="video/mp4" />
+  </video>
   <div class="scrim"></div>
 
   <div class="inner">
@@ -4018,15 +4017,15 @@
 </footer>
 
 <script>
-  // S0: reveal nav/text/buttons in sequence once the hero bg image has loaded
+  // S0: reveal nav/text/buttons in sequence once the hero bg video is ready
   (function () {
     var s0 = document.querySelector('.s0');
     var bg = s0.querySelector('.hri-bg');
     function reveal() { s0.classList.add('loaded'); }
-    if (bg.complete && bg.naturalWidth > 0) {
+    if (bg.readyState >= 2) {
       reveal();
     } else {
-      bg.addEventListener('load', reveal);
+      bg.addEventListener('loadeddata', reveal);
       bg.addEventListener('error', reveal);
     }
   })();
