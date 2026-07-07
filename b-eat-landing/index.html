@@ -2570,6 +2570,29 @@
     flex: 1 1 460px;
   }
 
+  .s12 .stacked-tables {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 1.4vw, 20px);
+    flex: 1 1 460px;
+    max-width: 690px;
+  }
+
+  .s12 .stacked-tables .table-card {
+    flex: 0 1 auto;
+  }
+
+  .s12 tbody tr.highlight td {
+    background: rgba(255, 232, 163, 0.3);
+    color: #1a1a2e;
+    font-weight: 700;
+  }
+
+  .s12 tbody tr.highlight td.merged {
+    border-left: 1px solid #e5eaf0;
+    border-bottom: none;
+  }
+
   .s12 .notes {
     flex: 1 1 320px;
     max-width: 375px;
@@ -3876,7 +3899,70 @@
         <p>기업, 관공서 등 파트너십 매장에 적합한 최적의 도입 조건</p>
       </div>
 
-      <div class="flex-row">
+      <div class="flex-row partnership-row">
+        <div class="stacked-tables">
+          <div class="table-card">
+            <table>
+              <colgroup>
+                <col style="width: 36.23%;" />
+                <col style="width: 28.99%;" />
+                <col style="width: 34.78%;" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th colspan="2">초기 도입비</th>
+                  <th>비고</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="label">로봇 비용, 키오스크, 시공비</td>
+                  <td class="value accent">면제</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="label">설치비</td>
+                  <td class="value">₩ 10,000,000</td>
+                  <td>일회성</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-card">
+            <table>
+              <colgroup>
+                <col style="width: 36.23%;" />
+                <col style="width: 28.99%;" />
+                <col style="width: 34.78%;" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th colspan="2">월 운영비</th>
+                  <th>비고</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="label">원부자재</td>
+                  <td class="value">사용량 비례 정산</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="label">i-MAD (AI 매장 운영) 비용</td>
+                  <td class="value accent">면제</td>
+                  <td>정가 390,000</td>
+                </tr>
+                <tr>
+                  <td class="label">월 운영비</td>
+                  <td class="value">₩ 1,120,000</td>
+                  <td>유지보수 (주 5~7일)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div class="table-card">
           <table>
             <colgroup>
@@ -3884,56 +3970,33 @@
               <col style="width: 28.99%;" />
               <col style="width: 34.78%;" />
             </colgroup>
-            <thead>
-              <tr>
-                <th colspan="2">항목</th>
-                <th>비고</th>
-              </tr>
-            </thead>
             <tbody>
               <tr>
-                <td class="label">로봇 비용, 키오스크, 시공비</td>
-                <td class="value accent">면제</td>
-                <td></td>
+                <td class="label">총 매출</td>
+                <td class="value">₩ 18,000,000</td>
+                <td>일 300잔 X 판매가 2,000원</td>
               </tr>
               <tr>
-                <td class="label">원부자재</td>
-                <td class="value">사용량 비례 정산</td>
-                <td></td>
+                <td class="label">① 원 부자재</td>
+                <td class="value">₩ 9,000,000</td>
+                <td>원가율 약 50% 예시</td>
               </tr>
               <tr>
-                <td class="label">i-MAD (AI 매장 운영) 비용</td>
-                <td class="value accent">면제</td>
-                <td>정가 390,000</td>
-              </tr>
-              <tr>
-                <td class="label">설치비</td>
-                <td class="value">₩ 10,000,000</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="label">월 운영비</td>
+                <td class="label">② 월 운영비</td>
                 <td class="value">₩ 1,120,000</td>
-                <td>유지보수 (주 5~7일), 정기점검</td>
+                <td>유지보수 (주5~7일)</td>
+              </tr>
+              <tr class="highlight">
+                <td class="label">총 수익</td>
+                <td class="value">₩ 7,880,000</td>
+                <td rowspan="2" class="merged">총 매출 - (①+②)</td>
+              </tr>
+              <tr class="highlight">
+                <td class="label">총 수익률</td>
+                <td class="value">43.8%</td>
               </tr>
             </tbody>
           </table>
-        </div>
-
-        <div class="notes">
-          <div class="note-block">
-            <h4>물류 산정기준 (월 24일 운영 기준)</h4>
-            <p>예) 아메리카노 기준 : 일 평균 250잔 기준, 약 450만원 수준</p>
-            <ul>
-              <li>주문 음료 구성 및 레시피에 따라 변동될 수 있습니다.</li>
-            </ul>
-          </div>
-          <div class="note-block">
-            <h4>기대 매출 예시</h4>
-            <p>월 300만원 매출 (수익) 발생</p>
-            <p>(日 300잔 판매 x 잔당 500원 x 月 근무일수 20일 산정)</p>
-            <p>운영비 (월 112만원) 감안 시, 추가 수익 발생</p>
-          </div>
         </div>
       </div>
     </div>
