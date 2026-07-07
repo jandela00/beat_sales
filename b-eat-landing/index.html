@@ -2507,6 +2507,51 @@
     border: 1px solid #e5eaf0;
   }
 
+  .s12 .partnership-table {
+    margin-top: clamp(18px, 2.3vw, 32px);
+    max-width: none;
+  }
+
+  /* border-collapse + rowspan is unreliable across browsers for which
+     side "wins" a shared edge; separate borders avoid that ambiguity
+     since this table only ever declares a border from one side. */
+  .s12 .partnership-table table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .s12 .partnership-table thead th.blank {
+    background: #ffffff;
+  }
+
+  .s12 .partnership-table tbody td.label {
+    border-right: 1px solid #e5eaf0;
+  }
+
+  .s12 .partnership-table thead th:not(:last-child) {
+    border-right: 1px solid #e5eaf0;
+  }
+
+  .s12 .partnership-table .type-sub {
+    display: block;
+    margin-top: 4px;
+    color: #4a4a6a;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .s12 .partnership-table tbody td.notes-cell {
+    background: #ffffff;
+    color: #4a4a6a;
+    font-weight: 500;
+    text-align: left;
+    white-space: normal;
+    vertical-align: middle;
+    line-height: 1.7;
+    padding: 24px 20px;
+    border-bottom: none;
+  }
+
   .s12 table {
     width: 100%;
     table-layout: fixed;
@@ -3906,105 +3951,65 @@
         <p>기업, 관공서 등 파트너십 매장에 적합한 최적의 도입 조건</p>
       </div>
 
-      <div class="flex-row partnership-row">
-        <div class="stacked-tables">
-          <div class="table-card">
-            <table>
-              <colgroup>
-                <col style="width: 36.23%;" />
-                <col style="width: 28.99%;" />
-                <col style="width: 34.78%;" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th colspan="2">초기 도입비</th>
-                  <th>비고</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="label">로봇 비용, 키오스크, 시공비</td>
-                  <td class="value accent">면제</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="label">설치비</td>
-                  <td class="value">₩ 10,000,000</td>
-                  <td>일회성</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="table-card">
-            <table>
-              <colgroup>
-                <col style="width: 36.23%;" />
-                <col style="width: 28.99%;" />
-                <col style="width: 34.78%;" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th colspan="2">월 운영비</th>
-                  <th>비고</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="label">원부자재</td>
-                  <td class="value">사용량 비례 정산</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="label">i-MAD (AI 매장 운영) 비용</td>
-                  <td class="value accent">면제</td>
-                  <td>정가 390,000</td>
-                </tr>
-                <tr>
-                  <td class="label">월 운영비</td>
-                  <td class="value">₩ 1,120,000</td>
-                  <td>유지보수 (주 5~7일)</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="table-card">
-          <table>
-            <colgroup>
-              <col style="width: 36.23%;" />
-              <col style="width: 28.99%;" />
-              <col style="width: 34.78%;" />
-            </colgroup>
-            <tbody>
-              <tr>
-                <td class="label">총 매출</td>
-                <td class="value">₩ 18,000,000</td>
-                <td>일 300잔 X 판매가 2,000원</td>
-              </tr>
-              <tr>
-                <td class="label">① 원 부자재</td>
-                <td class="value">₩ 9,000,000</td>
-                <td>원가율 약 50% 예시</td>
-              </tr>
-              <tr>
-                <td class="label">② 월 운영비</td>
-                <td class="value">₩ 1,120,000</td>
-                <td>유지보수 (주5~7일)</td>
-              </tr>
-              <tr class="highlight">
-                <td class="label">총 수익</td>
-                <td class="value">₩ 7,880,000</td>
-                <td rowspan="2" class="merged">총 매출 - (①+②)</td>
-              </tr>
-              <tr class="highlight">
-                <td class="label">총 수익률</td>
-                <td class="value">43.8%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="table-card partnership-table">
+        <table>
+          <colgroup>
+            <col style="width: 25%;" />
+            <col style="width: 23.57%;" />
+            <col style="width: 23.57%;" />
+            <col style="width: 27.86%;" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="blank"></th>
+              <th>A타입 (복지형)<br /><span class="type-sub">임직원 음료 무상 제공</span></th>
+              <th>B타입 (유상 운영형)<br /><span class="type-sub">임직원 음료 판매</span></th>
+              <th>비고</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="label">운영 계약 기간</td>
+              <td class="value">5년</td>
+              <td class="value">5년</td>
+              <td rowspan="6" class="notes-cell">
+                임직원 음료 판매 (B타입)의 경우,<br />
+                → Minimum Guarantee 월 600만원<br /><br />
+                (예시)<br />
+                월 6,000잔 X 잔 당 판매가 1,000원 = 월 600만원<br />
+                - 일 평균 300잔 (영업 일 수 20일 기준)<br />
+                - 아메리카노 판매가 1천원 기준으로 산정<br />
+                &nbsp;&nbsp;&nbsp;(판매가 정책은 기업에서 결정)<br /><br />
+                cf) 500만원 매출 발생 시, 100만원 차액 정산
+              </td>
+            </tr>
+            <tr>
+              <td class="label">b;eat 로봇(장비)<br />키오스크<br />설치/시공</td>
+              <td class="value accent">무상 지원</td>
+              <td class="value accent">무상 지원</td>
+            </tr>
+            <tr>
+              <td class="label">물류 (원부자재 등)</td>
+              <td class="value accent">유상 공급 (원부자재 정산)</td>
+              <td class="value accent">무상 공급</td>
+            </tr>
+            <tr>
+              <td class="label">월 운영비 (①+②)</td>
+              <td class="value accent">월 122만원</td>
+              <td class="value accent">무상 지원</td>
+            </tr>
+            <tr>
+              <td class="label">① 세정/세척 등 관리 업무 (주 5~7회 방문)</td>
+              <td class="value">월 110만원</td>
+              <td class="value">지원</td>
+            </tr>
+            <tr>
+              <td class="label">② 정기점검 (분기 1회 방문)</td>
+              <td class="value">월 12만원</td>
+              <td class="value">지원</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
