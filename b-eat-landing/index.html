@@ -503,7 +503,7 @@
     gap: clamp(10px, 1.6vw, 20px);
     text-align: center;
     max-width: 700px;
-    margin: 0 auto clamp(40px, 6vw, 72px);
+    margin: 0 auto 50px;
   }
 
   .s2 .title .label {
@@ -644,11 +644,25 @@
 
   .s2 table td.label {
     text-align: center;
+    background: #f8f8f8;
   }
 
   .s2 table tr.bg-blue td { background: #edf5ff; }
   .s2 table tr.bold td { font-weight: 700; }
   .s2 table tr.bordered td { border-bottom: 1px solid #e5eaf0; }
+  .s2 table tr.bordered td:not(:last-child) { border-right: 1px solid #e5eaf0; }
+
+  .s2 table tr.price-row td:first-child {
+    border-bottom: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+  }
+  .s2 table tr.price-row td:last-child {
+    border-bottom: 1px solid #ffffff;
+  }
+
+  .s2 table tr.store-row td:not(:last-child) {
+    border-right: 1px solid #ffffff;
+  }
 
   .s2 table tr.profit td {
     background: #4a4a6a;
@@ -2973,20 +2987,20 @@
 
     <div class="content-row">
       <div class="chart">
-        <svg class="piechart" viewBox="20 20 240 240" role="img" aria-label="수익 구조 원형 그래프: 수익 53%, 원부자재 33%, 부가세 10%, i-MAD 이용료 4%">
-          <circle class="slice" data-key="profit" data-pct="53%" data-label="수익" r="80" cx="140" cy="140" fill="transparent" stroke="#5298dd" stroke-width="60" stroke-dasharray="266.408 236.247" stroke-dashoffset="0" transform="rotate(-90 140 140)" />
-          <circle class="slice" data-key="material" data-pct="33%" data-label="원부자재" r="80" cx="140" cy="140" fill="transparent" stroke="#3CC3DF" stroke-width="60" stroke-dasharray="165.876 336.779" stroke-dashoffset="-266.408" transform="rotate(-90 140 140)" />
-          <circle class="slice" data-key="vat" data-pct="10%" data-label="부가세" r="80" cx="140" cy="140" fill="transparent" stroke="#8888" stroke-width="60" stroke-dasharray="50.265 452.39" stroke-dashoffset="-432.284" transform="rotate(-90 140 140)" />
-          <circle class="slice" data-key="imad" data-pct="4%" data-label="i-MAD" r="80" cx="140" cy="140" fill="transparent" stroke="#EBEDF5" stroke-width="60" stroke-dasharray="20.106 482.549" stroke-dashoffset="-482.549" transform="rotate(-90 140 140)" />
+        <svg class="piechart" viewBox="20 20 240 240" role="img" aria-label="수익 구조 원형 그래프: 수익 51%, 원부자재(평균) 36%, 부가세 10%, i-MAD 이용료 3%">
+          <circle class="slice" data-key="profit" data-pct="51%" data-label="수익" r="80" cx="140" cy="140" fill="transparent" stroke="#5298dd" stroke-width="60" stroke-dasharray="256.354 246.301" stroke-dashoffset="0" transform="rotate(-90 140 140)" />
+          <circle class="slice" data-key="material" data-pct="36%" data-label="원부자재(평균)" r="80" cx="140" cy="140" fill="transparent" stroke="#3CC3DF" stroke-width="60" stroke-dasharray="180.956 321.699" stroke-dashoffset="-256.354" transform="rotate(-90 140 140)" />
+          <circle class="slice" data-key="vat" data-pct="10%" data-label="부가세" r="80" cx="140" cy="140" fill="transparent" stroke="#8888" stroke-width="60" stroke-dasharray="50.265 452.39" stroke-dashoffset="-437.31" transform="rotate(-90 140 140)" />
+          <circle class="slice" data-key="imad" data-pct="3%" data-label="i-MAD" r="80" cx="140" cy="140" fill="transparent" stroke="#EBEDF5" stroke-width="60" stroke-dasharray="15.08 487.575" stroke-dashoffset="-487.575" transform="rotate(-90 140 140)" />
           <circle r="56" cx="140" cy="140" fill="#ffffff" />
-          <text class="chart-pct" x="140" y="142" text-anchor="middle">53%</text>
+          <text class="chart-pct" x="140" y="142" text-anchor="middle">51%</text>
           <text class="chart-label" x="140" y="160" text-anchor="middle">수익</text>
         </svg>
         <div class="chart-legend">
-          <div class="legend-item" data-key="profit"><span class="legend-dot" style="background:#5298dd"></span>수익 53%</div>
-          <div class="legend-item" data-key="material"><span class="legend-dot" style="background:#3CC3DF"></span>원부자재 33%</div>
+          <div class="legend-item" data-key="profit"><span class="legend-dot" style="background:#5298dd"></span>수익 51%</div>
+          <div class="legend-item" data-key="material"><span class="legend-dot" style="background:#3CC3DF"></span>원부자재(평균) 36%</div>
           <div class="legend-item" data-key="vat"><span class="legend-dot" style="background:#8888"></span>부가세 10%</div>
-          <div class="legend-item" data-key="imad"><span class="legend-dot" style="background:#EBEDF5"></span>i-MAD 이용료(AI 매장운영 OS) 4%</div>
+          <div class="legend-item" data-key="imad"><span class="legend-dot" style="background:#EBEDF5"></span>i-MAD 이용료(AI 매장운영 OS) 3%</div>
         </div>
       </div>
 
@@ -2994,11 +3008,11 @@
         <p class="table-note">* 영업일수(월) : 30일</p>
         <table>
           <tbody>
-            <tr class="bg-blue bold">
+            <tr class="bg-blue bold price-row">
               <td class="label accent">평균 판매가</td>
               <td colspan="3" class="accent">₩ 2,500</td>
             </tr>
-            <tr class="bg-blue bold">
+            <tr class="bg-blue bold store-row">
               <td class="label"></td>
               <td>A 매장</td>
               <td>B 매장</td>
