@@ -33,7 +33,7 @@ b-eat-landing/
 - [x] 네비게이션 메뉴 앵커 연결 (섹션 이동 4개 + 외부 링크 2개, 새 창) + 로고 클릭 시 최상단 이동
 - [x] PC: 상단 네비게이션 고정(fixed) + 블러 배경, 앵커 이동 시 고정 네비에 가리지 않도록 `scroll-margin-top` 적용
 - [x] 모바일: 햄버거 메뉴(전체화면 오버레이, 큰 폰트), 전 섹션 좌우 여백/터치 타겟/폰트 크기 최적화
-- [x] 스크롤 시 콘텐츠가 올라오는 fade-in 인터랙션 (`IntersectionObserver`, 섹션별 순차 등장, `prefers-reduced-motion` 대응)
+- [x] 스크롤 시 콘텐츠가 올라오는 fade-in 인터랙션을 자체 `IntersectionObserver` 구현에서 [AOS(Animate On Scroll)](https://github.com/michalsnik/aos) 라이브러리(CDN)로 전면 교체, 섹션별 순차 등장 유지, `prefers-reduced-motion` 대응
 - [x] S0 히어로: 배경 영상(mp4) + 60% 블랙 오버레이, 로고/텍스트/버튼 순차 등장, 모바일은 영상 42% 크기로 축소해 네비 아래 배치
 - [x] S2 기대수익 파이차트를 이미지 대신 SVG로 코딩, hover 시 슬라이스/범례 강조 및 중앙 라벨 전환 인터랙션 적용
 - [x] S3 연혁 타임라인을 PC 기준 인터랙티브 그래프로 재구성: 성장 곡선이 그려지고 → 로봇 1.0/2.0/3.0 이미지가 순차 등장 → 수치가 카운트업 → 배경 화살표가 아래에서 위로 자라남 (모바일은 기존 정적 이미지로 폴백)
@@ -57,7 +57,8 @@ b-eat-landing/
 
 ## 인터랙션
 
-- **스크롤 fade-in**: 각 섹션의 콘텐츠 wrapper에 `.reveal` 클래스를 부여하고 `IntersectionObserver`로 뷰포트 진입을 감지해 `in-view` 클래스를 추가합니다 (`opacity: 0 → 1`, `translateY → 0`, 한 번만 재생). 요소별로 `data-reveal-threshold`를 지정하면 더 늦게(화면에 더 많이 들어왔을 때) 트리거되도록 개별 조정할 수 있습니다. `prefers-reduced-motion: reduce` 환경에서는 애니메이션 없이 즉시 표시됩니다.
+- **스크롤 fade-in (AOS)**: 각 섹션의 요소에 `data-aos="fade-up"`을 부여해 [AOS](https://github.com/michalsnik/aos) CDN(`aos.css`/`aos.js`)이 스크롤 진입 시 `opacity: 0 → 1`, `translateY → 0`으로 페이드업시킵니다 (`AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 })`, `</body>` 직전에서 초기화). 같은 트리거 시점에서 여러 요소를 순차적으로 등장시켜야 하는 구간(S4 카드, S8 하이브리드 매장, S9 블렌드, S10 특허 연도 블록, S11 갤러리)은 각 자식 요소에 `data-aos-delay`(50ms 단위)와 `data-aos-anchor="상위 래퍼 선택자"`를 지정해, 실제 스크롤 위치와 무관하게 상위 래퍼가 뷰포트에 들어온 시점을 기준으로 함께 캐스케이드되도록 했습니다. AOS는 `prefers-reduced-motion`을 자체 지원하지 않아 `[data-aos]{opacity:1!important;transform:none!important;transition:none!important;}` 미디어쿼리를 별도로 추가했습니다.
+- **AOS와 hover 트랜지션 충돌 주의**: `data-aos`가 걸린 요소에 자체 hover 트랜지션(`border-color`, `box-shadow` 등)이 있으면, AOS의 내장 CSS(`html:not(.no-js) [data-aos^=fade]...`, specificity 최대 0,4,0)가 `transition-property`/`transition-delay`를 가로채 hover까지 reveal 딜레이가 새어 들어갈 수 있습니다(S4 카드에서 실제 발생했던 버그). 이런 경우 `html .s4 .cards .card.card { transition-property: ...; transition-delay: 0s; }`처럼 specificity를 의도적으로 AOS 규칙보다 높여 hover 트랜지션을 분리해야 합니다.
 - **S0 히어로**: 배경 영상 로드가 끝나면(`readyState`/`loadeddata`) 로고·네비·문구·버튼이 순서대로 페이드업됩니다. PC 네비게이션은 스크롤해도 상단에 고정되어 있습니다.
 - **S2 파이차트**: `stroke-dasharray` 기반 SVG 도넛 차트로, 슬라이스 또는 범례에 마우스를 올리면 해당 조각이 강조되고 중앙 텍스트가 실시간으로 전환됩니다. 마우스 좌표 → 중심 기준 각도 계산으로 hover 대상을 판별합니다(SVG dasharray는 마우스 히트테스트를 반영하지 않는 브라우저 특성 때문).
 - **S3 성장 그래프(PC)**: 스크롤 진입 시 (1) SVG 곡선이 `getTotalLength()` 기반으로 왼쪽에서 오른쪽으로 그려지고 (2) 로봇 1.0→2.0→3.0 이미지가 순서대로 나타나고 (3) 34/88/330 수치가 0에서부터 카운트업되고 (4) 배경의 연한 화살표가 아래에서 위로 자라나는 4단계 시퀀스로 재생됩니다.

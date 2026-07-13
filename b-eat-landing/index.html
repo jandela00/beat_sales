@@ -6,29 +6,21 @@
 <title>b:eat — 로봇카페 프랜차이즈 랜딩페이지</title>
 <link rel="stylesheet" as="style" crossorigin
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 100%; }
   html { overflow-x: hidden; scroll-behavior: smooth; }
   body { font-family: 'Pretendard', sans-serif; background: #ffffff; }
 
-  /* ===== Scroll reveal ===== */
-  .reveal {
-    opacity: 0;
-    transform: translateY(120px);
-    transition: opacity 0.45s ease-out, transform 0.45s ease-out;
-  }
-
-  .reveal.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  /* ===== Scroll reveal (AOS) ===== */
+  /* AOS has no built-in prefers-reduced-motion support, so force every
+     [data-aos] element to its final state and skip the transition. */
   @media (prefers-reduced-motion: reduce) {
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
+    [data-aos] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
     }
   }
 
@@ -1014,36 +1006,21 @@
     flex-direction: column;
     gap: clamp(16px, 1.7vw, 24px);
     min-height: clamp(240px, 20vw, 280px);
-    opacity: 0;
-    transform: translateY(70px);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* Specificity bumped to beat AOS's own transition-property/-delay rules
+     ([data-aos][data-aos][data-aos-delay="Xs"].aos-animate, specificity 0,4,0)
+     on the same element, so hover isn't delayed by the reveal's stagger. */
+  html .s4 .cards .card.card {
+    transition-property: border-color, box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
   }
 
   .s4 .card:hover {
     border-color: #5298dd;
     box-shadow: 2px 4px 16px rgba(82, 152, 221, 0.2);
-  }
-
-  .s4 .inner.in-view .card {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .s4 .inner.in-view .card:nth-child(1) { transition-delay: 0s, 0s, 0s, 0s; }
-  .s4 .inner.in-view .card:nth-child(2) { transition-delay: 0s, 0s, 0.08s, 0.08s; }
-  .s4 .inner.in-view .card:nth-child(3) { transition-delay: 0s, 0s, 0.16s, 0.16s; }
-  .s4 .inner.in-view .card:nth-child(4) { transition-delay: 0s, 0s, 0.24s, 0.24s; }
-  .s4 .inner.in-view .card:nth-child(5) { transition-delay: 0s, 0s, 0.32s, 0.32s; }
-  .s4 .inner.in-view .card:nth-child(6) { transition-delay: 0s, 0s, 0.4s, 0.4s; }
-  .s4 .inner.in-view .card:nth-child(7) { transition-delay: 0s, 0s, 0.48s, 0.48s; }
-  .s4 .inner.in-view .card:nth-child(8) { transition-delay: 0s, 0s, 0.56s, 0.56s; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .s4 .card {
-      opacity: 1;
-      transform: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
   }
 
   .s4 .card .num {
@@ -1310,20 +1287,6 @@
     border: 4px solid #5298dd;
     box-sizing: border-box;
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-  }
-
-  .s6 .inner.in-view .highlight-frame {
-    opacity: 1;
-    transition-delay: 0.5s;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .s6 .highlight-frame {
-      opacity: 1;
-      transition: none;
-    }
   }
 
   .s6 table {
@@ -1847,71 +1810,6 @@
     }
   }
 
-  /* ===== S8 : Sequential fade-in (photo -> blue box -> text) ===== */
-  .s8 .inner {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .s8 .photo,
-  .s8 .controls,
-  .s8 .panel {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .s8 .panel > .main-text,
-  .s8 .panel > .sub-text {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-
-  .s8 .inner.in-view .photo,
-  .s8 .inner.in-view .controls {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.1s;
-  }
-
-  .s8 .inner.in-view .panel {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.5s;
-  }
-
-  .s8 .inner.in-view .panel > .main-text {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.85s;
-  }
-
-  .s8 .inner.in-view .panel > .sub-text:nth-of-type(2) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 1.05s;
-  }
-
-  .s8 .inner.in-view .panel > .sub-text:nth-of-type(3) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 1.25s;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .s8 .photo,
-    .s8 .controls,
-    .s8 .panel,
-    .s8 .panel .main-text,
-    .s8 .panel .sub-text {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
-
   /* ===== S9 : Beverage Quality ===== */
   .s9 {
     width: 100%;
@@ -2060,40 +1958,6 @@
     width: 100%;
     height: auto;
     display: block;
-  }
-
-  /* ===== S9 : Sequential fade-in (blends in order, then bean photo) ===== */
-  .s9 .beans-row {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .s9 .blend,
-  .s9 .bean-photo {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
-  }
-
-  .s9 .beans-row.in-view .blend,
-  .s9 .beans-row.in-view .bean-photo {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .s9 .beans-row.in-view .blend:nth-of-type(1) { transition-delay: 0.1s; }
-  .s9 .beans-row.in-view .blend:nth-of-type(3) { transition-delay: 0.35s; }
-  .s9 .beans-row.in-view .blend:nth-of-type(5) { transition-delay: 0.6s; }
-  .s9 .beans-row.in-view .bean-photo { transition-delay: 0.9s; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .s9 .blend,
-    .s9 .bean-photo {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
   }
 
   .s9 .carousel {
@@ -2269,47 +2133,6 @@
     }
   }
 
-  /* ===== S10 : Sequential fade-in (photo, then year blocks) ===== */
-  .s10 .inner {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .s10 .photo,
-  .s10 .year-block {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
-  }
-
-  .s10 .inner.in-view .photo,
-  .s10 .inner.in-view .year-block {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .s10 .inner.in-view .photo { transition-delay: 0.1s; }
-
-  .s10 .inner.in-view .timeline-col:not(.narrow) .year-block:nth-child(1) { transition-delay: 0.45s; }
-  .s10 .inner.in-view .timeline-col:not(.narrow) .year-block:nth-child(2) { transition-delay: 0.6s; }
-  .s10 .inner.in-view .timeline-col:not(.narrow) .year-block:nth-child(3) { transition-delay: 0.75s; }
-  .s10 .inner.in-view .timeline-col:not(.narrow) .year-block:nth-child(4) { transition-delay: 0.9s; }
-  .s10 .inner.in-view .timeline-col:not(.narrow) .year-block:nth-child(5) { transition-delay: 1.05s; }
-  .s10 .inner.in-view .timeline-col:not(.narrow) .year-block:nth-child(6) { transition-delay: 1.2s; }
-
-  .s10 .inner.in-view .timeline-col.narrow .year-block:nth-child(1) { transition-delay: 1.8s; }
-  .s10 .inner.in-view .timeline-col.narrow .year-block:nth-child(2) { transition-delay: 1.95s; }
-  .s10 .inner.in-view .timeline-col.narrow .year-block:nth-child(3) { transition-delay: 2.1s; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .s10 .photo,
-    .s10 .year-block {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
 
   /* ===== S11 : Marketing Support ===== */
   .s11 {
@@ -2410,36 +2233,6 @@
     }
   }
 
-  /* ===== S11 : Sequential fade-in (images one by one) ===== */
-  .s11 .inner {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .s11 .cell {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .s11 .inner.in-view .cell {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .s11 .inner.in-view .gallery-row .cell:nth-child(1) { transition-delay: 0.15s; }
-  .s11 .inner.in-view .gallery-row .cell:nth-child(2) { transition-delay: 0.4s; }
-  .s11 .inner.in-view .gallery-row .cell:nth-child(3) { transition-delay: 0.65s; }
-  .s11 .inner.in-view .gallery-row .cell:nth-child(4) { transition-delay: 0.9s; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .s11 .cell {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
 
   /* ===== S12 : Purchase Models ===== */
   .s12 { width: 100%; background: #ffffff; }
@@ -2952,7 +2745,7 @@
 
 <!-- S1 : Promotion -->
 <section class="s1">
-  <div class="inner reveal">
+  <div class="inner" data-aos="fade-up">
     <div class="text">
       <span class="label">10TH ANNIVERSARY PROMOTION</span>
       <p class="headline">선착순 1,000만원 도입비 지원</p>
@@ -2970,7 +2763,7 @@
 
 <!-- S2 : Expected Return -->
 <section class="s2">
-  <div class="inner reveal">
+  <div class="inner" data-aos="fade-up">
     <div class="title">
       <span class="label">expected return</span>
       <h2>인건비 부담은 최소화,<br />운영 효율은 극대화</h2>
@@ -3069,7 +2862,7 @@
 
 <!-- S3 : Since 2016 -->
 <section class="s3" id="s3">
-  <div class="inner reveal">
+  <div class="inner" data-aos="fade-up">
     <div class="title">
       <span class="label">b;eat SINCE 2016</span>
       <h2>
@@ -3135,7 +2928,7 @@
 
 <!-- S4 : Key Point -->
 <section class="s4">
-  <div class="inner reveal">
+  <div class="inner" data-aos="fade-up">
     <div class="title">
       <span class="label">Key point</span>
       <h2>
@@ -3145,7 +2938,7 @@
     </div>
 
     <div class="cards">
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-anchor=".s4 .inner" data-aos-duration="500" data-aos-delay="0">
         <span class="num">1.</span>
         <div class="card-title">
           <p>365일 24시간</p>
@@ -3157,7 +2950,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-anchor=".s4 .inner" data-aos-duration="500" data-aos-delay="100">
         <span class="num">2.</span>
         <div class="card-title">
           <p>지능형</p>
@@ -3169,7 +2962,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-anchor=".s4 .inner" data-aos-duration="500" data-aos-delay="150">
         <span class="num">3.</span>
         <div class="card-title">
           <p>체계적인</p>
@@ -3181,7 +2974,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-anchor=".s4 .inner" data-aos-duration="500" data-aos-delay="200">
         <span class="num">4.</span>
         <div class="card-title">
           <p>스마트</p>
@@ -3193,7 +2986,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-anchor=".s4 .inner" data-aos-duration="500" data-aos-delay="250">
         <span class="num">5.</span>
         <div class="card-title">
           <p>APPㆍKIOSK</p>
@@ -3205,7 +2998,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-anchor=".s4 .inner" data-aos-duration="500" data-aos-delay="300">
         <span class="num">6.</span>
         <div class="card-title">
           <p>공인 로봇 바리스타</p>
@@ -3217,7 +3010,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-anchor=".s4 .inner" data-aos-duration="500" data-aos-delay="350">
         <span class="num">7.</span>
         <div class="card-title">
           <p>동시 5잔 병렬 제조</p>
@@ -3229,7 +3022,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-anchor=".s4 .inner" data-aos-duration="500" data-aos-delay="400">
         <span class="num">8.</span>
         <div class="card-title">
           <p>기술 평가 A등급,</p>
@@ -3245,7 +3038,7 @@
 
 <!-- S5 : AI Solution -->
 <section class="s5" id="s5">
-  <div class="inner reveal">
+  <div class="inner" data-aos="fade-up">
     <div class="title">
       <span class="label">ai solution</span>
       <h2>
@@ -3313,7 +3106,7 @@
 
 <!-- S6 : Comparison -->
 <section class="s6">
-  <div class="inner reveal">
+  <div class="inner" data-aos="fade-up">
     <div class="title">
       <span class="label">comparison</span>
       <h2>
@@ -3391,7 +3184,7 @@
           </tr>
         </tbody>
       </table>
-      <div class="highlight-frame"></div>
+      <div class="highlight-frame" data-aos="fade" data-aos-anchor=".s6 .inner" data-aos-duration="600" data-aos-delay="500"></div>
       </div>
     </div>
   </div>
@@ -3399,7 +3192,7 @@
 
 <!-- S6-1 : Interview (YouTube) -->
 <section class="s6-1" id="s6-1">
-  <div class="inner reveal">
+  <div class="inner" data-aos="fade-up">
     <div class="title">
       <span class="label">Interview</span>
       <h2>3 Track Client</h2>
@@ -3420,7 +3213,7 @@
 
 <!-- S7 : Commercial Area -->
 <section class="s7">
-  <div class="title-wrap reveal">
+  <div class="title-wrap" data-aos="fade-up">
     <div class="title">
       <span class="label">Commercial area</span>
       <h2>
@@ -3434,7 +3227,7 @@
     </div>
   </div>
 
-  <div class="carousel reveal" id="s7-carousel">
+  <div class="carousel" id="s7-carousel" data-aos="fade-up">
     <div class="carousel-track">
 
       <div class="card">
@@ -3587,7 +3380,7 @@
 
 <!-- S8 : Hybrid Concept -->
 <section class="s8">
-  <div class="inner reveal">
+  <div class="inner">
     <div class="title">
       <span class="label">hybrid CONCEPT</span>
       <h2>
@@ -3597,11 +3390,11 @@
     </div>
 
     <div class="stage">
-      <div class="photo">
+      <div class="photo" data-aos="fade-up" data-aos-anchor=".s8 .inner" data-aos-duration="600" data-aos-delay="100">
         <img id="s8-photo" src="assets/s8-store-1.jpg" alt="비트카페 야탑역점 매장 전경" />
       </div>
 
-      <div class="controls">
+      <div class="controls" data-aos="fade-up" data-aos-anchor=".s8 .inner" data-aos-duration="600" data-aos-delay="100">
         <button type="button" class="arrow-btn" id="s8-prev" aria-label="이전 매장">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
@@ -3611,17 +3404,17 @@
         </button>
       </div>
 
-      <div class="panel">
-        <div class="main-text">
+      <div class="panel" data-aos="fade-up" data-aos-anchor=".s8 .inner" data-aos-duration="600" data-aos-delay="500">
+        <div class="main-text" data-aos="fade-up" data-aos-anchor=".s8 .inner" data-aos-duration="500" data-aos-delay="850">
           <p>b;eat와 사람의 협동 매장</p>
           <p>최소 인력, 최적의 시너지 효과</p>
         </div>
-        <div class="sub-text">
+        <div class="sub-text" data-aos="fade-up" data-aos-anchor=".s8 .inner" data-aos-duration="500" data-aos-delay="1050">
           <p>로봇커피와 협동으로 일부 시간대 유인 운영으로</p>
           <p>베이커리 등 부가 콘텐츠로 매출을 다각화하는</p>
           <p>스마트한 F&amp;B 솔루션</p>
         </div>
-        <div class="sub-text">
+        <div class="sub-text" data-aos="fade-up" data-aos-anchor=".s8 .inner" data-aos-duration="500" data-aos-delay="1250">
           <p>배달 서비스 대응 가능하여 오프라인 매출 외에</p>
           <p>온라인 배달 채널을 통한 추가 수익 창출 가능</p>
         </div>
@@ -3632,7 +3425,7 @@
 
 <!-- S9 : Beverage Quality -->
 <section class="s9">
-  <div class="title-wrap reveal">
+  <div class="title-wrap" data-aos="fade-up">
     <div class="title">
       <span class="label">Beverage Quality</span>
       <h2>고급 원두 + 시즌 신메뉴</h2>
@@ -3643,10 +3436,10 @@
     </div>
   </div>
 
-  <div class="beans-row reveal">
+  <div class="beans-row">
     <div class="beans-list">
 
-      <div class="blend">
+      <div class="blend" data-aos="fade-up" data-aos-anchor=".s9 .beans-row" data-aos-duration="550" data-aos-delay="100">
         <div class="blend-info">
           <h3>시그니처 블렌드</h3>
           <div class="desc">
@@ -3669,7 +3462,7 @@
 
       <div class="divider"></div>
 
-      <div class="blend">
+      <div class="blend" data-aos="fade-up" data-aos-anchor=".s9 .beans-row" data-aos-duration="550" data-aos-delay="350">
         <div class="blend-info">
           <h3>브라이트 블렌드</h3>
           <div class="desc">
@@ -3692,7 +3485,7 @@
 
       <div class="divider"></div>
 
-      <div class="blend">
+      <div class="blend" data-aos="fade-up" data-aos-anchor=".s9 .beans-row" data-aos-duration="550" data-aos-delay="600">
         <div class="blend-info">
           <h3>프라넬 코롬비아 디카페인</h3>
           <div class="desc">
@@ -3715,12 +3508,12 @@
 
     </div>
 
-    <div class="bean-photo">
+    <div class="bean-photo" data-aos="fade-up" data-aos-anchor=".s9 .beans-row" data-aos-duration="550" data-aos-delay="900">
       <img src="assets/s9-beanbags.png" alt="b:eat 시그니처 블렌드, 브라이트 블렌드 원두 패키지" />
     </div>
   </div>
 
-  <div class="carousel reveal" id="s9-carousel">
+  <div class="carousel" id="s9-carousel" data-aos="fade-up">
     <div class="carousel-track" id="s9-carousel-track">
       <div class="menu-card"><img src="assets/s9-menu1.png" alt="납작복숭아 망고 아이스티" /></div>
       <div class="menu-card"><img src="assets/s9-menu2.jpg" alt="벚꽃 캐모마일 티" /></div>
@@ -3740,7 +3533,7 @@
 
 <!-- S10 : Patent Grant -->
 <section class="s10">
-  <div class="inner reveal">
+  <div class="inner">
     <div class="title">
       <span class="label">Patent grant</span>
       <h2>특허로 쌓아온 <span class="accent">기술 경쟁력</span></h2>
@@ -3748,37 +3541,37 @@
     </div>
 
     <div class="content-row">
-      <div class="photo">
+      <div class="photo" data-aos="fade-up" data-aos-anchor=".s10 .inner" data-aos-duration="550" data-aos-delay="100">
         <img src="assets/s10-patent-wall.png" alt="b:eat 특허 인증서 전시" />
       </div>
 
       <div class="timeline-col">
-        <div class="year-block">
+        <div class="year-block" data-aos="fade-up" data-aos-anchor=".s10 .inner" data-aos-duration="550" data-aos-delay="450">
           <h3>2017</h3>
           <ul>
             <li>커피 제조 장치 및 동작 방법 관리자</li>
             <li>단말 이벤트 통지 기술</li>
           </ul>
         </div>
-        <div class="year-block">
+        <div class="year-block" data-aos="fade-up" data-aos-anchor=".s10 .inner" data-aos-duration="550" data-aos-delay="600">
           <h3>2018</h3>
           <ul>
             <li>무인 커피 음료 제조 머신 주문 처리 장치</li>
           </ul>
         </div>
-        <div class="year-block">
+        <div class="year-block" data-aos="fade-up" data-aos-anchor=".s10 .inner" data-aos-duration="550" data-aos-delay="750">
           <h3>2019</h3>
           <ul>
             <li>커피 제조 머신 기반 주문 처리 기술</li>
           </ul>
         </div>
-        <div class="year-block">
+        <div class="year-block" data-aos="fade-up" data-aos-anchor=".s10 .inner" data-aos-duration="550" data-aos-delay="900">
           <h3>2021</h3>
           <ul>
             <li>날씨ㆍ기상 데이터 기반 커피 메뉴 추천 기술</li>
           </ul>
         </div>
-        <div class="year-block">
+        <div class="year-block" data-aos="fade-up" data-aos-anchor=".s10 .inner" data-aos-duration="550" data-aos-delay="1050">
           <h3>2020</h3>
           <ul>
             <li>컵 디스펜서</li>
@@ -3786,7 +3579,7 @@
             <li>제조 장치 제스처 기반 터치스크린 주문 기술</li>
           </ul>
         </div>
-        <div class="year-block">
+        <div class="year-block" data-aos="fade-up" data-aos-anchor=".s10 .inner" data-aos-duration="550" data-aos-delay="1200">
           <h3>2023</h3>
           <ul>
             <li>무인 매장 출입 고객 모니터링 기술</li>
@@ -3795,7 +3588,7 @@
       </div>
 
       <div class="timeline-col narrow">
-        <div class="year-block">
+        <div class="year-block" data-aos="fade-up" data-aos-anchor=".s10 .inner" data-aos-duration="550" data-aos-delay="1800">
           <h3>2024</h3>
           <ul>
             <li>무인 매장 운영 정보 생성</li>
@@ -3808,7 +3601,7 @@
             <li>기후ㆍ취향 기반 개인화 제조</li>
           </ul>
         </div>
-        <div class="year-block">
+        <div class="year-block" data-aos="fade-up" data-aos-anchor=".s10 .inner" data-aos-duration="550" data-aos-delay="1950">
           <h3>2025</h3>
           <ul>
             <li>전국 총 330대 누적 설치</li>
@@ -3816,7 +3609,7 @@
             <li>전국 주요 기업, 아파트, 로드샵 운영</li>
           </ul>
         </div>
-        <div class="year-block">
+        <div class="year-block" data-aos="fade-up" data-aos-anchor=".s10 .inner" data-aos-duration="550" data-aos-delay="2100">
           <h3>2026</h3>
           <ul>
             <li>일본 수출 확정 (7월)</li>
@@ -3830,7 +3623,7 @@
 
 <!-- S11 : Marketing Support -->
 <section class="s11">
-  <div class="inner reveal" data-reveal-threshold="0.4">
+  <div class="inner">
     <div class="title">
       <span class="label">Marketing support</span>
       <h2>매장의 매출 증진을 위한 다양한 <span class="accent">마케팅 지원</span></h2>
@@ -3839,15 +3632,15 @@
 
     <div class="gallery">
       <div class="gallery-row row-top">
-        <div class="cell"><img src="assets/s11-1.png" alt="비트x티니핑월드 사이니지 이벤트" /></div>
-        <div class="cell"><img src="assets/s11-2.jpg" alt="미션 임파서블 영화 예매권 증정 이벤트" /></div>
-        <div class="cell"><img src="assets/s11-3.jpg" alt="와일드씽 예매권 이벤트" /></div>
+        <div class="cell" data-aos="fade-up" data-aos-anchor=".s11 .inner" data-aos-anchor-placement="center-bottom" data-aos-duration="700" data-aos-delay="150"><img src="assets/s11-1.png" alt="비트x티니핑월드 사이니지 이벤트" /></div>
+        <div class="cell" data-aos="fade-up" data-aos-anchor=".s11 .inner" data-aos-anchor-placement="center-bottom" data-aos-duration="700" data-aos-delay="400"><img src="assets/s11-2.jpg" alt="미션 임파서블 영화 예매권 증정 이벤트" /></div>
+        <div class="cell" data-aos="fade-up" data-aos-anchor=".s11 .inner" data-aos-anchor-placement="center-bottom" data-aos-duration="700" data-aos-delay="650"><img src="assets/s11-3.jpg" alt="와일드씽 예매권 이벤트" /></div>
       </div>
       <div class="gallery-row row-bottom">
-        <div class="cell"><img src="assets/s11-4.jpg" alt="2025 권은비 콘서트 티켓링크" /></div>
-        <div class="cell"><img src="assets/s11-5.jpg" alt="숏폼 콘테스트 SNS 이벤트" /></div>
-        <div class="cell"><img src="assets/s11-6.jpg" alt="트랜스포머 원 영화 이벤트" /></div>
-        <div class="cell"><img src="assets/s11-7.jpg" alt="아메리카노 1000원 할인 이벤트" /></div>
+        <div class="cell" data-aos="fade-up" data-aos-anchor=".s11 .inner" data-aos-anchor-placement="center-bottom" data-aos-duration="700" data-aos-delay="150"><img src="assets/s11-4.jpg" alt="2025 권은비 콘서트 티켓링크" /></div>
+        <div class="cell" data-aos="fade-up" data-aos-anchor=".s11 .inner" data-aos-anchor-placement="center-bottom" data-aos-duration="700" data-aos-delay="400"><img src="assets/s11-5.jpg" alt="숏폼 콘테스트 SNS 이벤트" /></div>
+        <div class="cell" data-aos="fade-up" data-aos-anchor=".s11 .inner" data-aos-anchor-placement="center-bottom" data-aos-duration="700" data-aos-delay="650"><img src="assets/s11-6.jpg" alt="트랜스포머 원 영화 이벤트" /></div>
+        <div class="cell" data-aos="fade-up" data-aos-anchor=".s11 .inner" data-aos-anchor-placement="center-bottom" data-aos-duration="700" data-aos-delay="900"><img src="assets/s11-7.jpg" alt="아메리카노 1000원 할인 이벤트" /></div>
       </div>
     </div>
   </div>
@@ -3855,7 +3648,7 @@
 
 <!-- S12 : Purchase Models -->
 <section class="s12" id="s12">
-  <div class="inner reveal">
+  <div class="inner" data-aos="fade-up">
     <div class="main-title">
       <span class="label">Purchase models</span>
       <h2>투자 유형에 맞는 <span class="accent">최적의 조건</span> 선택 도입 가능</h2>
@@ -4030,7 +3823,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="footer reveal">
+<footer class="footer" data-aos="fade-up">
   <div class="inner">
     <div class="company">
       <h2>주식회사 비트코퍼레이션</h2>
@@ -4446,40 +4239,6 @@
   })();
 </script>
 
-<!-- 수정된 스크롤 인터랙션 스크립트 -->
-<script>
-  (function () {
-    var els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(function (el) { el.classList.add('in-view'); });
-      return;
-    }
-
-    function onIntersect(entries, observer) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          // 기존 'visible' 대신 CSS에 맞게 'in-view' 클래스를 추가하도록 수정 완료
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }
-
-    // Elements can opt into a later trigger point via data-reveal-threshold
-    // (e.g. 0.4 = wait until 40% of the element is in view) so the reveal
-    // plays out while the user can still see it, instead of finishing
-    // before they've scrolled far enough to notice.
-    var observersByThreshold = {};
-    els.forEach(function (el) {
-      var threshold = parseFloat(el.getAttribute('data-reveal-threshold')) || 0.1;
-      if (!observersByThreshold[threshold]) {
-        observersByThreshold[threshold] = new IntersectionObserver(onIntersect, { threshold: threshold });
-      }
-      observersByThreshold[threshold].observe(el);
-    });
-  })();
-</script>
-
 <div class="floating-actions" id="floating-actions">
   <a class="floating-btn floating-contact" href="https://beatcorp.imweb.me/Request" target="_blank" rel="noopener" aria-label="상담신청">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"></path><path d="M15 5l4 4"></path></svg>
@@ -4514,6 +4273,16 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   })();
+</script>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 700,
+    easing: 'ease-out',
+    once: true,
+    offset: 80
+  });
 </script>
 
 </body>
